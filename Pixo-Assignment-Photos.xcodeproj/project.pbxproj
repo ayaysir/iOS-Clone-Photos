@@ -8,21 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		442425AC2C62584B00A457C3 /* Pixo_Assignment_PhotosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425AB2C62584B00A457C3 /* Pixo_Assignment_PhotosApp.swift */; };
-		442425AE2C62584B00A457C3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425AD2C62584B00A457C3 /* ContentView.swift */; };
+		442425AE2C62584B00A457C3 /* CoreDataExampleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425AD2C62584B00A457C3 /* CoreDataExampleContentView.swift */; };
 		442425B02C62584C00A457C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 442425AF2C62584C00A457C3 /* Assets.xcassets */; };
 		442425B32C62584C00A457C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 442425B22C62584C00A457C3 /* Preview Assets.xcassets */; };
 		442425B52C62584C00A457C3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425B42C62584C00A457C3 /* Persistence.swift */; };
 		442425B82C62584C00A457C3 /* Pixo_Assignment_Photos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 442425B62C62584C00A457C3 /* Pixo_Assignment_Photos.xcdatamodeld */; };
+		442425C02C625A4600A457C3 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425BF2C625A4600A457C3 /* TabBarView.swift */; };
+		442425C42C62617700A457C3 /* IconWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425C32C62617700A457C3 /* IconWithText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		442425A82C62584B00A457C3 /* Pixo-Assignment-Photos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pixo-Assignment-Photos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		442425AB2C62584B00A457C3 /* Pixo_Assignment_PhotosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixo_Assignment_PhotosApp.swift; sourceTree = "<group>"; };
-		442425AD2C62584B00A457C3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		442425AD2C62584B00A457C3 /* CoreDataExampleContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExampleContentView.swift; sourceTree = "<group>"; };
 		442425AF2C62584C00A457C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		442425B22C62584C00A457C3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		442425B42C62584C00A457C3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		442425B72C62584C00A457C3 /* Pixo_Assignment_Photos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pixo_Assignment_Photos.xcdatamodel; sourceTree = "<group>"; };
+		442425BF2C625A4600A457C3 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		442425C32C62617700A457C3 /* IconWithText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +46,9 @@
 				442425AA2C62584B00A457C3 /* Pixo-Assignment-Photos */,
 				442425A92C62584B00A457C3 /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		442425A92C62584B00A457C3 /* Products */ = {
 			isa = PBXGroup;
@@ -55,10 +61,11 @@
 		442425AA2C62584B00A457C3 /* Pixo-Assignment-Photos */ = {
 			isa = PBXGroup;
 			children = (
+				442425C12C62616600A457C3 /* View */,
+				442425BE2C625A0500A457C3 /* CoreData */,
 				442425AB2C62584B00A457C3 /* Pixo_Assignment_PhotosApp.swift */,
-				442425AD2C62584B00A457C3 /* ContentView.swift */,
+				442425BF2C625A4600A457C3 /* TabBarView.swift */,
 				442425AF2C62584C00A457C3 /* Assets.xcassets */,
-				442425B42C62584C00A457C3 /* Persistence.swift */,
 				442425B62C62584C00A457C3 /* Pixo_Assignment_Photos.xcdatamodeld */,
 				442425B12C62584C00A457C3 /* Preview Content */,
 			);
@@ -71,6 +78,31 @@
 				442425B22C62584C00A457C3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		442425BE2C625A0500A457C3 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				442425B42C62584C00A457C3 /* Persistence.swift */,
+				442425AD2C62584B00A457C3 /* CoreDataExampleContentView.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		442425C12C62616600A457C3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				442425C22C62616B00A457C3 /* Component */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		442425C22C62616B00A457C3 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				442425C32C62617700A457C3 /* IconWithText.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,8 +176,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				442425B52C62584C00A457C3 /* Persistence.swift in Sources */,
-				442425AE2C62584B00A457C3 /* ContentView.swift in Sources */,
+				442425AE2C62584B00A457C3 /* CoreDataExampleContentView.swift in Sources */,
 				442425AC2C62584B00A457C3 /* Pixo_Assignment_PhotosApp.swift in Sources */,
+				442425C42C62617700A457C3 /* IconWithText.swift in Sources */,
+				442425C02C625A4600A457C3 /* TabBarView.swift in Sources */,
 				442425B82C62584C00A457C3 /* Pixo_Assignment_Photos.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +322,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -317,6 +352,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
