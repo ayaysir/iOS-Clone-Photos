@@ -15,6 +15,8 @@
 		442425B82C62584C00A457C3 /* Pixo_Assignment_Photos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 442425B62C62584C00A457C3 /* Pixo_Assignment_Photos.xcdatamodeld */; };
 		442425C02C625A4600A457C3 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425BF2C625A4600A457C3 /* TabBarView.swift */; };
 		442425C42C62617700A457C3 /* IconWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425C32C62617700A457C3 /* IconWithText.swift */; };
+		442425C62C63905D00A457C3 /* PhotosListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425C52C63905D00A457C3 /* PhotosListView.swift */; };
+		442425C92C6395BA00A457C3 /* PhotosListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425C82C6395BA00A457C3 /* PhotosListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		442425B72C62584C00A457C3 /* Pixo_Assignment_Photos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pixo_Assignment_Photos.xcdatamodel; sourceTree = "<group>"; };
 		442425BF2C625A4600A457C3 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		442425C32C62617700A457C3 /* IconWithText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWithText.swift; sourceTree = "<group>"; };
+		442425C52C63905D00A457C3 /* PhotosListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListView.swift; sourceTree = "<group>"; };
+		442425C82C6395BA00A457C3 /* PhotosListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,7 @@
 		442425AA2C62584B00A457C3 /* Pixo-Assignment-Photos */ = {
 			isa = PBXGroup;
 			children = (
+				442425C72C63959E00A457C3 /* ViewModel */,
 				442425C12C62616600A457C3 /* View */,
 				442425BE2C625A0500A457C3 /* CoreData */,
 				442425AB2C62584B00A457C3 /* Pixo_Assignment_PhotosApp.swift */,
@@ -93,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				442425C22C62616B00A457C3 /* Component */,
+				442425C52C63905D00A457C3 /* PhotosListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -103,6 +109,14 @@
 				442425C32C62617700A457C3 /* IconWithText.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		442425C72C63959E00A457C3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				442425C82C6395BA00A457C3 /* PhotosListViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,7 +191,9 @@
 			files = (
 				442425B52C62584C00A457C3 /* Persistence.swift in Sources */,
 				442425AE2C62584B00A457C3 /* CoreDataExampleContentView.swift in Sources */,
+				442425C92C6395BA00A457C3 /* PhotosListViewModel.swift in Sources */,
 				442425AC2C62584B00A457C3 /* Pixo_Assignment_PhotosApp.swift in Sources */,
+				442425C62C63905D00A457C3 /* PhotosListView.swift in Sources */,
 				442425C42C62617700A457C3 /* IconWithText.swift in Sources */,
 				442425C02C625A4600A457C3 /* TabBarView.swift in Sources */,
 				442425B82C62584C00A457C3 /* Pixo_Assignment_Photos.xcdatamodeld in Sources */,
@@ -317,6 +333,7 @@
 				DEVELOPMENT_TEAM = 6S2SA26VAN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Importing photos from the library requires permission to be granted.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -347,6 +364,7 @@
 				DEVELOPMENT_TEAM = 6S2SA26VAN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Importing photos from the library requires permission to be granted.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

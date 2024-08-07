@@ -10,7 +10,7 @@ import SwiftUI
 struct TabBarView: View {
   var body: some View {
     TabView {
-      Text("1")
+      PhotosListView()
         .tabItem {
           IconWithText(image: .init(systemName: "photo.fill.on.rectangle.fill"), text: "보관함")
         }
