@@ -14,29 +14,51 @@ struct PhotosListView: View {
   @State private var columnCount = 3.0
   
   var columns: [GridItem] {
-      return (1...Int(columnCount)).map { _ in
+      (1...Int(columnCount)).map { _ in
           GridItem(.flexible(), spacing: MARGIN)
       }
   }
   
   var body: some View {
-    ScrollView {
-      LazyVGrid(columns: columns, spacing: MARGIN) {
-        ForEach(viewModel.images, id: \.self) { uiImage in
-          Image(uiImage: uiImage)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-            .clipped()
-            .aspectRatio(1, contentMode: .fit)
+    ScrollViewReader { reader in
+      ScrollView {
+        let modCount = viewModel.assets.count % Int(columnCount)
+        if modCount != 0 {
+          ForEach(0..<modCount, id: \.self) { _ in
+            Rectangle()
+              .foregroundStyle(.background)
+          }
+        }
+        
+        LazyVGrid(columns: columns, spacing: MARGIN) {
+          ForEach(0..<2, id: \.self) { index in
+            Rectangle()
+              .foregroundStyle(.white)
+          }
+          ForEach(viewModel.assets) { asset in
+            Image(uiImage: asset.image)
+              .resizable()
+              .aspectRatio(contentMode: .fill)
+              .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+              .clipped()
+              .aspectRatio(1, contentMode: .fit)
+              // ScrollView가 180도 회전되었으므로 사진도 같이 회전
+              .rotationEffect(.degrees(180))
+              .onAppear {
+                print(asset.id)
+              }
+          }
+        }
+        .task {
+          if await PhotosListViewModel.requestAuth() {
+            viewModel.fetch()
+          }
         }
       }
+      // ScrollViewReader 대신 사용하면 밑에서부터 역순으로 스크롤한 효과를 낼 수 있음
+      .rotationEffect(.degrees(180))
     }
-    .onAppear {
-      PhotosListViewModel.requestAuth {
-        viewModel.fetch()
-      }
-    }
+    // .defaultScrollAnchor(.bottom) // iOS 17 이상
   }
 }
 

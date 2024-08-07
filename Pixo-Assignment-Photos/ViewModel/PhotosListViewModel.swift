@@ -8,28 +8,26 @@
 import UIKit
 import Photos
 
+struct LibraryImage: Identifiable {
+  let id: String
+  let name: String
+  let image: UIImage
+  let creationDate: Date
+}
+
 class PhotosListViewModel: ObservableObject {
   let manager = PHImageManager.default()
-  @Published var images: [UIImage] = .init()
+  @Published var assets: [LibraryImage] = .init()
   
-  static func requestAuth(successHandler: @escaping () -> Void) {
-    PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
-      switch status {
-      case .notDetermined:
-        print("PHPhotoLibrary Authorization Status: Not Determined")
-      case .restricted:
-        print("PHPhotoLibrary Authorization Status: Restricted")
-      case .denied:
-        print("PHPhotoLibrary Authorization Status: Denied")
-      case .authorized:
-        print("PHPhotoLibrary Authorization Status: Authorized")
-        successHandler()
-      case .limited:
-        print("PHPhotoLibrary Authorization Status: Limited")
-        successHandler()
-      @unknown default:
-        print("PHPhotoLibrary Authorization Status: Unknown Default")
-      }
+  static func requestAuth() async -> Bool {
+    let status = await PHPhotoLibrary.requestAuthorization(for: .readWrite)
+    return switch status {
+    case .notDetermined, .restricted, .denied:
+      false
+    case .authorized, .limited:
+      true
+    @unknown default:
+      false
     }
   }
   
@@ -45,6 +43,7 @@ class PhotosListViewModel: ObservableObject {
     ]
     
     let result = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+    
     if result.count > 0 {
       for i in 0..<result.count {
         let asset = result.object(at: i)
@@ -55,8 +54,13 @@ class PhotosListViewModel: ObservableObject {
           targetSize: size,
           contentMode: .aspectFill,
           options: requestOptions) { image, _ in
-            if let image {
-              self.images.append(image)
+            if let image, let creationDate = asset.creationDate {
+              let libraryImage = LibraryImage(
+                id: asset.localIdentifier,
+                name: asset.description,
+                image: image,
+                creationDate: creationDate)
+              self.assets.append(libraryImage)
             } else {
               print("Error: image load failed - \(result[i].localIdentifier)")
             }
