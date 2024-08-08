@@ -18,6 +18,7 @@ struct LibraryImage: Identifiable {
 class PhotosListViewModel: ObservableObject {
   let manager = PHImageManager.default()
   @Published var assets: [LibraryImage] = .init()
+  @Published var selectedAsset: LibraryImage?
   
   static func requestAuth() async -> Bool {
     let status = await PHPhotoLibrary.requestAuthorization(for: .readWrite)
