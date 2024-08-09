@@ -17,9 +17,14 @@ struct LibraryImage: Identifiable {
 
 class PhotosListViewModel: ObservableObject {
   let manager = PHImageManager.default()
+  let isPreview: Bool
   @Published var assetsCount = 0
   @Published var assets: [LibraryImage] = .init()
   @Published var selectedAsset: LibraryImage?
+  
+  init(isPreview: Bool = false) {
+    self.isPreview = isPreview
+  }
   
   static func requestAuth() async -> Bool {
     let status = await PHPhotoLibrary.requestAuthorization(for: .readWrite)
@@ -33,7 +38,21 @@ class PhotosListViewModel: ObservableObject {
     }
   }
   
+  private func fetchForPreview() {
+    let now = Date.now
+    assets = [
+      .init(id: "Test1", name: "", image: .init(resource: .sample1), creationDate: .init(timeIntervalSince1970: 1690900323)),
+      .init(id: "Test2", name: "", image: .init(resource: .sample2), creationDate: .init(timeIntervalSince1970: now.timeIntervalSince1970 - 432000)),
+      .init(id: "Test3", name: "", image: .init(resource: .sample3), creationDate: now)
+    ]
+  }
+  
   func fetch() {
+    if isPreview {
+      fetchForPreview()
+      return
+    }
+    
     let requestOptions = PHImageRequestOptions()
     requestOptions.isSynchronous = true
     requestOptions.deliveryMode = .highQualityFormat

@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct TabBarView: View {
+  @StateObject var photosListViewModel = PhotosListViewModel()
+  
   var body: some View {
     TabView {
-      PhotosListView()
+      PhotosListView(viewModel: photosListViewModel)
         .tabItem {
           IconWithText(image: .init(systemName: "photo.fill.on.rectangle.fill"), text: "보관함")
         }
@@ -31,5 +33,5 @@ struct TabBarView: View {
 }
 
 #Preview {
-  TabBarView()
+  TabBarView(photosListViewModel: .init(isPreview: true))
 }

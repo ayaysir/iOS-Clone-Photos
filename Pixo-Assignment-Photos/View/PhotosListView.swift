@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PhotosListView: View {
-  @StateObject var viewModel = PhotosListViewModel()
+  @StateObject var viewModel: PhotosListViewModel
   
   let MARGIN: CGFloat = 3
   @State private var columnCount = 3.0
@@ -76,5 +76,7 @@ struct PhotosListView: View {
 }
 
 #Preview {
-  PhotosListView()
+  let viewModel = PhotosListViewModel(isPreview: true)
+  viewModel.fetch()
+  return PhotosListView(viewModel: viewModel)
 }

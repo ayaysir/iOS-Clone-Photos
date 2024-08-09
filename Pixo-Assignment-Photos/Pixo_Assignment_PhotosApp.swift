@@ -9,13 +9,15 @@ import SwiftUI
 
 @main
 struct Pixo_Assignment_PhotosApp: App {
-    let persistenceController = PersistenceController.shared
-
-    var body: some Scene {
-        WindowGroup {
-            // CoreDataExampleContentView()
-            //     .environment(\.managedObjectContext, persistenceController.container.viewContext)
-            TabBarView()
-        }
+  let persistenceController = PersistenceController.shared
+  
+  var photosViewModel = PhotosListViewModel()
+  
+  var body: some Scene {
+    WindowGroup {
+      CoreDataExampleContentView()
+          .environment(\.managedObjectContext, persistenceController.container.viewContext)
+      TabBarView()
     }
+  }
 }
