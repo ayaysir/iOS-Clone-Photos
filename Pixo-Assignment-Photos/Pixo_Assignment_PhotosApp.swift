@@ -15,8 +15,8 @@ struct Pixo_Assignment_PhotosApp: App {
   
   var body: some Scene {
     WindowGroup {
-      CoreDataExampleContentView()
-          .environment(\.managedObjectContext, persistenceController.container.viewContext)
+      // CoreDataExampleContentView()
+      //     .environment(\.managedObjectContext, persistenceController.container.viewContext)
       TabBarView()
     }
   }

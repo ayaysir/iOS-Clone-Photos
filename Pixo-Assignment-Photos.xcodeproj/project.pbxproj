@@ -18,6 +18,7 @@
 		442425C62C63905D00A457C3 /* PhotosListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425C52C63905D00A457C3 /* PhotosListView.swift */; };
 		442425C92C6395BA00A457C3 /* PhotosListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425C82C6395BA00A457C3 /* PhotosListViewModel.swift */; };
 		442425E52C64F61E00A457C3 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425E42C64F61E00A457C3 /* DetailView.swift */; };
+		442425E82C6675FD00A457C3 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425E72C6675FD00A457C3 /* View+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		442425C52C63905D00A457C3 /* PhotosListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListView.swift; sourceTree = "<group>"; };
 		442425C82C6395BA00A457C3 /* PhotosListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListViewModel.swift; sourceTree = "<group>"; };
 		442425E42C64F61E00A457C3 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		442425E72C6675FD00A457C3 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 		442425AA2C62584B00A457C3 /* Pixo-Assignment-Photos */ = {
 			isa = PBXGroup;
 			children = (
+				442425E62C6675EB00A457C3 /* Extension */,
 				442425C72C63959E00A457C3 /* ViewModel */,
 				442425C12C62616600A457C3 /* View */,
 				442425BE2C625A0500A457C3 /* CoreData */,
@@ -120,6 +123,14 @@
 				442425C82C6395BA00A457C3 /* PhotosListViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		442425E62C6675EB00A457C3 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				442425E72C6675FD00A457C3 /* View+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +211,7 @@
 				442425C62C63905D00A457C3 /* PhotosListView.swift in Sources */,
 				442425C42C62617700A457C3 /* IconWithText.swift in Sources */,
 				442425C02C625A4600A457C3 /* TabBarView.swift in Sources */,
+				442425E82C6675FD00A457C3 /* View+.swift in Sources */,
 				442425B82C62584C00A457C3 /* Pixo_Assignment_Photos.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

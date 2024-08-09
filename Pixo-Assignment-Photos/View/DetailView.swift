@@ -13,6 +13,7 @@ struct DetailView: View {
   
   var body: some View {
     VStack {
+      Text("\(asset.id)")
       Image(uiImage: asset.image)
         .resizable()
         .scaledToFit()
