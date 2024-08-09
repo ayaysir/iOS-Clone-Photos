@@ -17,6 +17,7 @@ struct LibraryImage: Identifiable {
 
 class PhotosListViewModel: ObservableObject {
   let manager = PHImageManager.default()
+  @Published var assetsCount = 0
   @Published var assets: [LibraryImage] = .init()
   @Published var selectedAsset: LibraryImage?
   
@@ -34,7 +35,7 @@ class PhotosListViewModel: ObservableObject {
   
   func fetch() {
     let requestOptions = PHImageRequestOptions()
-    requestOptions.isSynchronous = false
+    requestOptions.isSynchronous = true
     requestOptions.deliveryMode = .highQualityFormat
     
     let fetchOptions = PHFetchOptions()
@@ -44,6 +45,7 @@ class PhotosListViewModel: ObservableObject {
     ]
     
     let result = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+    assetsCount = result.count
     
     if result.count > 0 {
       for i in 0..<result.count {

@@ -15,57 +15,63 @@ struct PhotosListView: View {
   @State private var isFirstrun = true
   
   var columns: [GridItem] {
-      (1...Int(columnCount)).map { _ in
-          GridItem(.flexible(), spacing: MARGIN)
-      }
+    (1...Int(columnCount)).map { _ in
+      GridItem(.flexible(), spacing: MARGIN)
+    }
   }
   
   var body: some View {
     NavigationView {
       ScrollViewReader { reader in
         ScrollView {
-          // if modCount != 0 {
-          //   ForEach(0..<modCount, id: \.self) { _ in
-          //     Rectangle()
-          //       .foregroundStyle(.background)
-          //   }
-          // }
-          
           LazyVGrid(columns: columns, spacing: MARGIN) {
-            ForEach(0..<2, id: \.self) { index in
+            let mod = Int(columnCount) - (viewModel.assetsCount % Int(columnCount))
+            let _ = print(viewModel.assetsCount, mod)
+            ForEach(0..<mod, id: \.self) { _ in
               Rectangle()
                 .foregroundStyle(.white)
             }
+            
             ForEach(viewModel.assets) { asset in
               NavigationLink {
                 DetailView(asset: asset)
               } label: {
-                Image(uiImage: asset.image)
-                  .resizable()
-                  .aspectRatio(contentMode: .fill)
-                  .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                  .clipped()
-                  .aspectRatio(1, contentMode: .fit)
-                  // ScrollView가 180도 회전되었으므로 사진도 같이 회전
-                  .rotationEffect(.degrees(180))
+                ZStack {
+                  Image(uiImage: asset.image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    .clipped()
+                    .aspectRatio(1, contentMode: .fit)
+                }
+                // ScrollView가 180도 회전되었으므로 사진도 같이 회전
+                .rotationEffect(.degrees(180))
               }
-              
             }
+            
           }
-          .task {
-            if await PhotosListViewModel.requestAuth(), isFirstrun {
-              viewModel.fetch()
-              // 중복 fetch 방지
-              isFirstrun = false
-            }
+          
+          
+        }
+        .task {
+          if await PhotosListViewModel.requestAuth(), isFirstrun {
+            viewModel.fetch()
+            // 중복 fetch 방지
+            isFirstrun = false
           }
         }
         // ScrollViewReader 대신 사용하면 밑에서부터 역순으로 스크롤한 효과를 낼 수 있음
-        .rotationEffect(.degrees(180))
+        .rotation3DEffect(
+          .degrees(180),
+          axis: (x: 1.0, y: 0.0, z: 0.0)
+        )
+        .rotation3DEffect(
+          .degrees(180),
+          axis: (x: 0.0, y: 1.0, z: 0.0)
+        )
       }
       // .defaultScrollAnchor(.bottom) // iOS 17 이상
     }
-    
   }
 }
 
