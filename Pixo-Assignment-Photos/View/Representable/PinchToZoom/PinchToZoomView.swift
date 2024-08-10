@@ -8,6 +8,8 @@
 import UIKit
 import SwiftUI
 
+<<<<<<< HEAD
+=======
 protocol PinchToZoomViewDelgate: AnyObject {
   func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangePinching isPinching: Bool)
   func pinchToZoomView(_ pinchToZoomView: PinchToZoomView, didChangeScale scale: CGFloat)
@@ -70,6 +72,7 @@ class PinchToZoomView: UIView {
     case .changed:
       if gesture.numberOfTouches != numberOfTouches {
         let newLocation = gesture.location(in: self)
+        let jumpD
       }
     case .ended, .cancelled, .failed:
       break
@@ -78,3 +81,4 @@ class PinchToZoomView: UIView {
     }
   }
 }
+>>>>>>> 2ddf716f9295739d1c25893b3016a71d2d1a23c0
