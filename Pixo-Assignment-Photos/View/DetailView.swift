@@ -11,9 +11,11 @@ struct DetailView: View {
   @Environment(\.dismiss) var dismiss
   let asset: LibraryImage
   
+  @State private var currentZoom = 0.0
+  @State private var totalZoom = 1.0
+  
   var body: some View {
     VStack {
-      Text("\(asset.id)")
       Image(uiImage: asset.image)
         .resizable()
         .scaledToFit()
@@ -22,16 +24,17 @@ struct DetailView: View {
     .toolbar {
       ToolbarItem(placement: .principal) {
         VStack {
-          Text(dateDescription(for: asset.creationDate))
+          Text(dateDescription)
             .font(.system(size: 16))
-          Text("오후 9:42")
-            .font(.system(size: 11  ))
+          Text(timeDescription)
+            .font(.system(size: 11))
         }
       }
     }
   }
   
-  func dateDescription(for date: Date) -> String {
+  var dateDescription: String {
+    let date = asset.creationDate
     let calendar = Calendar.current
     let formatter = DateFormatter()
     formatter.locale = .current
@@ -58,8 +61,18 @@ struct DetailView: View {
     formatter.dateFormat = "yyyy년 M월 d일"
     return formatter.string(from: date)
   }
+  
+  var timeDescription: String {
+    let formatter = DateFormatter()
+    formatter.locale = .current
+    formatter.dateFormat = "a h:mm"
+    
+    return formatter.string(from: asset.creationDate)
+  }
 }
 
 #Preview {
-  DetailView(asset: .init(id: "Test1", name: "풍경", image: .init(resource: .sample1), creationDate: .now))
+  NavigationView {
+    DetailView(asset: .init(id: "Test1", name: "풍경", image: .init(resource: .sample1), creationDate: .now))
+  }
 }
