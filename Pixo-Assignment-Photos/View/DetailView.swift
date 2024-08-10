@@ -16,10 +16,11 @@ struct DetailView: View {
   
   var body: some View {
     VStack {
-      Image(uiImage: asset.image)
-        .resizable()
-        .scaledToFit()
-        .pinchToZoom()
+      PhotoDetailRepresentedView {
+        Image(uiImage: asset.image)
+          .resizable()
+          .scaledToFit()
+      }
     }
     .navigationBarTitleDisplayMode(.inline)
     .toolbar {

@@ -79,12 +79,13 @@ class PinchToZoomView: UIView {
       scale = gesture.scale
 
       location = gesture.location(in: self)
-      offset = CGSize(width: location.x - startLocation.x, height: location.y - startLocation.y)
+      offset = CGSize(width: location.x - startLocation.x, 
+                      height: location.y - startLocation.y)
     case .ended, .cancelled, .failed:
       isPinching = false
-      scale = 1.0
-      anchor = .center
-      offset = .zero
+      // scale = 1.0
+      // anchor = .center
+      // offset = .zero
     default:
       break
     }
