@@ -19,6 +19,7 @@ struct DetailView: View {
       Image(uiImage: asset.image)
         .resizable()
         .scaledToFit()
+        .pinchToZoom()
     }
     .navigationBarTitleDisplayMode(.inline)
     .toolbar {
