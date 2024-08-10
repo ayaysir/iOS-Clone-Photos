@@ -17,7 +17,7 @@ struct DetailView: View {
   var body: some View {
     VStack {
       PhotoDetailRepresentedView {
-        Image(uiImage: asset.image)
+        Image(uiImage: asset.image ?? .sample1)
           .resizable()
           .scaledToFit()
       }
@@ -75,6 +75,6 @@ struct DetailView: View {
 
 #Preview {
   NavigationView {
-    DetailView(asset: .init(id: "Test1", name: "풍경", image: .init(resource: .sample1), creationDate: .now))
+    DetailView(asset: .init(id: "Test1", name: "풍경", image: .init(resource: .sample1), creationDate: .now, phAsset: nil))
   }
 }

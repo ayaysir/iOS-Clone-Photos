@@ -30,12 +30,17 @@ struct PhotosListView: View {
                 DetailView(asset: asset)
               } label: {
                 ZStack {
-                  Image(uiImage: asset.image)
+                  Image(uiImage: asset.image ?? .sample1)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                     .clipped()
                     .aspectRatio(1, contentMode: .fit)
+                }
+                
+                .onAppear {
+                  // print("\(asset.id)")
+                  viewModel.loadPhoto(id: asset.id)
                 }
               }
             }

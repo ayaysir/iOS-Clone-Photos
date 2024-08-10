@@ -11,8 +11,9 @@ import Photos
 struct LibraryImage: Identifiable {
   let id: String
   let name: String
-  let image: UIImage
+  var image: UIImage?
   let creationDate: Date
+  let phAsset: PHAsset?
 }
 
 func requestPhotosReadWriteAuth() async -> Bool {
@@ -28,20 +29,31 @@ func requestPhotosReadWriteAuth() async -> Bool {
 }
 
 class PhotosListViewModel: ObservableObject {
-  let manager = PHImageManager.default()
+  let manager = PHCachingImageManager()
   let isPreview: Bool
   @Published var assetsCount = 0
   @Published var assets: [LibraryImage] = .init()
   @Published var selectedAsset: LibraryImage?
   
+  private var result: PHFetchResult<PHAsset>?
+  private var thumbnailRequestOption = PHImageRequestOptions()
+  
   init(isPreview: Bool = false) {
     self.isPreview = isPreview
+    thumbnailRequestOption.deliveryMode = .opportunistic
+    thumbnailRequestOption.isSynchronous = false
   }
   
   private func fetchForPreview() {
     let sampleImages: [UIImage] = [.sample1, .sample2, .sample3]
     for i in 0..<50 {
-      self.assets.append(.init(id: "Temp_\(i)", name: "", image: sampleImages[i % 3], creationDate: .now))
+      self.assets.append(
+        .init(id: "Temp_\(i)",
+              name: "",
+              image: sampleImages[i % 3],
+              creationDate: .now,
+              phAsset: nil)
+        )
     }
   }
   
@@ -51,47 +63,58 @@ class PhotosListViewModel: ObservableObject {
       return
     }
     
-    let requestOptions = PHImageRequestOptions()
-    requestOptions.isSynchronous = true
-    requestOptions.deliveryMode = .highQualityFormat
-    
     let fetchOptions = PHFetchOptions()
     fetchOptions.sortDescriptors = [
       // TODO: - 사진 정렬
       NSSortDescriptor(key: "creationDate", ascending: true)
     ]
     
-    let result = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+    result = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+    
+    guard let result else {
+      return
+    }
+    
     assetsCount = result.count
+    print(assetsCount)
     
     if result.count > 0 {
       for i in 0..<result.count {
         let asset = result.object(at: i)
-        let size = CGSize(width: 700, height: 700)
         
-        manager.requestImage(
-          for: asset,
-          targetSize: size,
-          contentMode: .aspectFill,
-          options: requestOptions) { image, _ in
-            if let image, let creationDate = asset.creationDate {
-              let libraryImage = LibraryImage(
-                id: asset.localIdentifier,
-                name: asset.description,
-                image: image,
-                creationDate: creationDate)
-              
-              self.assets.append(libraryImage)
-            } else {
-              print("Error: image load failed - \(result[i].localIdentifier)")
-            }
-            
-            if i == result.count - 1 {
-              completeHandler?()
-            }
-          }
+        guard let creationDate = asset.creationDate else {
+          return
+        }
+        
+        let libraryImage = LibraryImage(
+          id: asset.localIdentifier,
+          name: asset.description,
+          image: nil,
+          creationDate: creationDate,
+          phAsset: asset)
+        
+        self.assets.append(libraryImage)
       }
     }
   }
   
+  func loadPhoto(id: String) {
+    
+    guard let index = assets.firstIndex(where: { $0.id == id }),
+          let phAsset = assets[index].phAsset,
+          assets[index].image == nil else {
+      return
+    }
+    
+    manager.requestImage(for: phAsset,
+                         targetSize: CGSize(width: 300, height: 300),
+                         contentMode: .aspectFill,
+                         options: thumbnailRequestOption) { image, info in
+      guard let image else {
+        return
+      }
+      
+      self.assets[index].image = image
+    }
+  }
 }
