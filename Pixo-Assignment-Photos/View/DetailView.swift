@@ -10,11 +10,6 @@ import SwiftUI
 struct DetailView: View {
   @Environment(\.dismiss) var dismiss
   @StateObject var viewModel: DetailViewModel
-  // let asset: LibraryImage
-  // @State var highResUIImage: UIImage?
-  // 
-  // @State private var currentZoom = 0.0
-  // @State private var totalZoom = 1.0
   
   var body: some View {
     VStack {

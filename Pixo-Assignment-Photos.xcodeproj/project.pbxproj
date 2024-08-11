@@ -23,6 +23,7 @@
 		443471FE2C68AB240052BD53 /* LibraryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443471FD2C68AB240052BD53 /* LibraryImage.swift */; };
 		443472012C68AB790052BD53 /* PhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443472002C68AB790052BD53 /* PhotosService.swift */; };
 		443472032C68AF730052BD53 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443472022C68AF730052BD53 /* DetailViewModel.swift */; };
+		443472052C68B4500052BD53 /* ForYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443472042C68B4500052BD53 /* ForYouView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		443471FD2C68AB240052BD53 /* LibraryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryImage.swift; sourceTree = "<group>"; };
 		443472002C68AB790052BD53 /* PhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosService.swift; sourceTree = "<group>"; };
 		443472022C68AF730052BD53 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		443472042C68B4500052BD53 /* ForYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForYouView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				442425C22C62616B00A457C3 /* Component */,
 				442425C52C63905D00A457C3 /* PhotosListView.swift */,
 				442425E42C64F61E00A457C3 /* DetailView.swift */,
+				443472042C68B4500052BD53 /* ForYouView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				443471FE2C68AB240052BD53 /* LibraryImage.swift in Sources */,
 				442425C62C63905D00A457C3 /* PhotosListView.swift in Sources */,
 				442425C42C62617700A457C3 /* IconWithText.swift in Sources */,
+				443472052C68B4500052BD53 /* ForYouView.swift in Sources */,
 				442425C02C625A4600A457C3 /* TabBarView.swift in Sources */,
 				443472032C68AF730052BD53 /* DetailViewModel.swift in Sources */,
 				443471FB2C67B1280052BD53 /* PhotoDetailRepresentedView.swift in Sources */,

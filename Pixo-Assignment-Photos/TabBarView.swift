@@ -16,8 +16,8 @@ struct TabBarView: View {
         .tabItem {
           IconWithText(image: .init(systemName: "photo.fill.on.rectangle.fill"), text: "보관함")
         }
-      Text("2")
-        .tabItem { 
+      ForYouView()
+        .tabItem {
           IconWithText(image: .init(systemName: "heart.text.square"), text: "For You")
         }
       Text("3")
