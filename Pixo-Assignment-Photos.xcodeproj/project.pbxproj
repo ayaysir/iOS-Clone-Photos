@@ -19,9 +19,6 @@
 		442425C92C6395BA00A457C3 /* PhotosListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425C82C6395BA00A457C3 /* PhotosListViewModel.swift */; };
 		442425E52C64F61E00A457C3 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425E42C64F61E00A457C3 /* DetailView.swift */; };
 		442425E82C6675FD00A457C3 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425E72C6675FD00A457C3 /* View+.swift */; };
-		443471F02C67A83E0052BD53 /* PinchToZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443471EF2C67A83E0052BD53 /* PinchToZoomView.swift */; };
-		443471F22C67A8C40052BD53 /* PinchToZoomRepresentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443471F12C67A8C40052BD53 /* PinchToZoomRepresentedView.swift */; };
-		443471F52C67A9C90052BD53 /* PinchToZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443471F42C67A9C90052BD53 /* PinchToZoom.swift */; };
 		443471FB2C67B1280052BD53 /* PhotoDetailRepresentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443471FA2C67B1280052BD53 /* PhotoDetailRepresentedView.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,9 +36,6 @@
 		442425C82C6395BA00A457C3 /* PhotosListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosListViewModel.swift; sourceTree = "<group>"; };
 		442425E42C64F61E00A457C3 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		442425E72C6675FD00A457C3 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
-		443471EF2C67A83E0052BD53 /* PinchToZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoomView.swift; sourceTree = "<group>"; };
-		443471F12C67A8C40052BD53 /* PinchToZoomRepresentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoomRepresentedView.swift; sourceTree = "<group>"; };
-		443471F42C67A9C90052BD53 /* PinchToZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoom.swift; sourceTree = "<group>"; };
 		443471FA2C67B1280052BD53 /* PhotoDetailRepresentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailRepresentedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,24 +141,13 @@
 			isa = PBXGroup;
 			children = (
 				443471F62C67AF3D0052BD53 /* PhotoDetail */,
-				443471EE2C67A8140052BD53 /* PinchToZoom */,
 			);
 			path = Representable;
-			sourceTree = "<group>";
-		};
-		443471EE2C67A8140052BD53 /* PinchToZoom */ = {
-			isa = PBXGroup;
-			children = (
-				443471EF2C67A83E0052BD53 /* PinchToZoomView.swift */,
-				443471F12C67A8C40052BD53 /* PinchToZoomRepresentedView.swift */,
-			);
-			path = PinchToZoom;
 			sourceTree = "<group>";
 		};
 		443471F32C67A9BE0052BD53 /* Modifier */ = {
 			isa = PBXGroup;
 			children = (
-				443471F42C67A9C90052BD53 /* PinchToZoom.swift */,
 			);
 			path = Modifier;
 			sourceTree = "<group>";
@@ -247,7 +230,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				443471F02C67A83E0052BD53 /* PinchToZoomView.swift in Sources */,
 				442425B52C62584C00A457C3 /* Persistence.swift in Sources */,
 				442425E52C64F61E00A457C3 /* DetailView.swift in Sources */,
 				442425AE2C62584B00A457C3 /* CoreDataExampleContentView.swift in Sources */,
@@ -256,10 +238,8 @@
 				442425C62C63905D00A457C3 /* PhotosListView.swift in Sources */,
 				442425C42C62617700A457C3 /* IconWithText.swift in Sources */,
 				442425C02C625A4600A457C3 /* TabBarView.swift in Sources */,
-				443471F52C67A9C90052BD53 /* PinchToZoom.swift in Sources */,
 				443471FB2C67B1280052BD53 /* PhotoDetailRepresentedView.swift in Sources */,
 				442425E82C6675FD00A457C3 /* View+.swift in Sources */,
-				443471F22C67A8C40052BD53 /* PinchToZoomRepresentedView.swift in Sources */,
 				442425B82C62584C00A457C3 /* Pixo_Assignment_Photos.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
