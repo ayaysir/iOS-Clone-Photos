@@ -7,10 +7,16 @@
 
 import SwiftUI
 
+final class PhotoDetailRepresentedViewModel: ObservableObject {
+  @Published var isFullscreen = false
+}
+
 struct PhotoDetailRepresentedView<Content: View>: UIViewRepresentable {
+  @ObservedObject var viewModel: PhotoDetailRepresentedViewModel
   private var content: Content
   
-  init(@ViewBuilder content: () -> Content) {
+  init(viewModel: PhotoDetailRepresentedViewModel, @ViewBuilder content: () -> Content) {
+    self.viewModel = viewModel
     self.content = content()
   }
   
@@ -40,6 +46,8 @@ struct PhotoDetailRepresentedView<Content: View>: UIViewRepresentable {
     // update the hosting controller's SwiftUI content
     context.coordinator.hostingController.rootView = self.content
     assert(context.coordinator.hostingController.view.superview == uiView)
+    // TODO: - 배경 토글시 다크모드 고려
+    context.coordinator.hostingController.view!.backgroundColor = viewModel.isFullscreen ? .black : .white
   }
   
   // MARK: - Coordinator
@@ -58,7 +66,7 @@ struct PhotoDetailRepresentedView<Content: View>: UIViewRepresentable {
 }
 
 #Preview {
-  PhotoDetailRepresentedView {
+  PhotoDetailRepresentedView(viewModel: .init()) {
     Image(uiImage: .sample1)
   }
 }

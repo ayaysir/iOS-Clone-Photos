@@ -10,29 +10,44 @@ import SwiftUI
 struct DetailView: View {
   @Environment(\.dismiss) var dismiss
   @StateObject var viewModel: DetailViewModel
+  @StateObject var detailReprViewModel: PhotoDetailRepresentedViewModel = .init()
   
   var body: some View {
-    VStack {
-      PhotoDetailRepresentedView {
-        Image(uiImage: (viewModel.highResImage ?? viewModel.asset.image) ?? .sample1)
-          .resizable()
-          .scaledToFit()
+    ZStack {
+      if detailReprViewModel.isFullscreen {
+        Color.black.ignoresSafeArea()
+      } else {
+        Color.white.ignoresSafeArea()
       }
-    }
-    .navigationBarTitleDisplayMode(.inline)
-    .toolbar {
-      ToolbarItem(placement: .principal) {
-        VStack {
-          Text(dateDescription)
-            .font(.system(size: 16))
-          Text(timeDescription)
-            .font(.system(size: 11))
+      
+      VStack {
+        PhotoDetailRepresentedView(viewModel: detailReprViewModel) {
+          Image(uiImage: (viewModel.highResImage ?? viewModel.asset.image) ?? .sample1)
+            .resizable()
+            .scaledToFit()
         }
       }
     }
+    .navigationBarTitleDisplayMode(.inline)
+    .navigationBarBackButtonHidden(detailReprViewModel.isFullscreen)
+    .toolbar {
+      ToolbarItem(placement: .principal) {
+        if !detailReprViewModel.isFullscreen {
+          VStack {
+            Text(dateDescription)
+              .font(.system(size: 16))
+            Text(timeDescription)
+              .font(.system(size: 11))
+          }
+        }
+      }
+    }
+    .onTapGesture {
+      detailReprViewModel.isFullscreen.toggle()
+    }
     .task {
       if viewModel.highResImage == nil,
-          let phAsset = viewModel.asset.phAsset {
+         let phAsset = viewModel.asset.phAsset {
         viewModel.highResImage = await loadHighResImage(of: phAsset)
       }
     }
