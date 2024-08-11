@@ -20,6 +20,9 @@
 		442425E52C64F61E00A457C3 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425E42C64F61E00A457C3 /* DetailView.swift */; };
 		442425E82C6675FD00A457C3 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442425E72C6675FD00A457C3 /* View+.swift */; };
 		443471FB2C67B1280052BD53 /* PhotoDetailRepresentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443471FA2C67B1280052BD53 /* PhotoDetailRepresentedView.swift */; };
+		443471FE2C68AB240052BD53 /* LibraryImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443471FD2C68AB240052BD53 /* LibraryImage.swift */; };
+		443472012C68AB790052BD53 /* PhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443472002C68AB790052BD53 /* PhotosService.swift */; };
+		443472032C68AF730052BD53 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443472022C68AF730052BD53 /* DetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,9 @@
 		442425E42C64F61E00A457C3 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		442425E72C6675FD00A457C3 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		443471FA2C67B1280052BD53 /* PhotoDetailRepresentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailRepresentedView.swift; sourceTree = "<group>"; };
+		443471FD2C68AB240052BD53 /* LibraryImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryImage.swift; sourceTree = "<group>"; };
+		443472002C68AB790052BD53 /* PhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosService.swift; sourceTree = "<group>"; };
+		443472022C68AF730052BD53 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,8 @@
 		442425AA2C62584B00A457C3 /* Pixo-Assignment-Photos */ = {
 			isa = PBXGroup;
 			children = (
+				443471FF2C68AB5C0052BD53 /* Service */,
+				443471FC2C68AB140052BD53 /* ValueObject */,
 				442425E62C6675EB00A457C3 /* Extension */,
 				442425C72C63959E00A457C3 /* ViewModel */,
 				442425C12C62616600A457C3 /* View */,
@@ -125,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				442425C82C6395BA00A457C3 /* PhotosListViewModel.swift */,
+				443472022C68AF730052BD53 /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -158,6 +167,22 @@
 				443471FA2C67B1280052BD53 /* PhotoDetailRepresentedView.swift */,
 			);
 			path = PhotoDetail;
+			sourceTree = "<group>";
+		};
+		443471FC2C68AB140052BD53 /* ValueObject */ = {
+			isa = PBXGroup;
+			children = (
+				443471FD2C68AB240052BD53 /* LibraryImage.swift */,
+			);
+			path = ValueObject;
+			sourceTree = "<group>";
+		};
+		443471FF2C68AB5C0052BD53 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				443472002C68AB790052BD53 /* PhotosService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,10 +260,13 @@
 				442425AE2C62584B00A457C3 /* CoreDataExampleContentView.swift in Sources */,
 				442425C92C6395BA00A457C3 /* PhotosListViewModel.swift in Sources */,
 				442425AC2C62584B00A457C3 /* Pixo_Assignment_PhotosApp.swift in Sources */,
+				443471FE2C68AB240052BD53 /* LibraryImage.swift in Sources */,
 				442425C62C63905D00A457C3 /* PhotosListView.swift in Sources */,
 				442425C42C62617700A457C3 /* IconWithText.swift in Sources */,
 				442425C02C625A4600A457C3 /* TabBarView.swift in Sources */,
+				443472032C68AF730052BD53 /* DetailViewModel.swift in Sources */,
 				443471FB2C67B1280052BD53 /* PhotoDetailRepresentedView.swift in Sources */,
+				443472012C68AB790052BD53 /* PhotosService.swift in Sources */,
 				442425E82C6675FD00A457C3 /* View+.swift in Sources */,
 				442425B82C62584C00A457C3 /* Pixo_Assignment_Photos.xcdatamodeld in Sources */,
 			);

@@ -9,15 +9,17 @@ import SwiftUI
 
 struct DetailView: View {
   @Environment(\.dismiss) var dismiss
-  let asset: LibraryImage
-  
-  @State private var currentZoom = 0.0
-  @State private var totalZoom = 1.0
+  @StateObject var viewModel: DetailViewModel
+  // let asset: LibraryImage
+  // @State var highResUIImage: UIImage?
+  // 
+  // @State private var currentZoom = 0.0
+  // @State private var totalZoom = 1.0
   
   var body: some View {
     VStack {
       PhotoDetailRepresentedView {
-        Image(uiImage: asset.image ?? .sample1)
+        Image(uiImage: (viewModel.highResImage ?? viewModel.asset.image) ?? .sample1)
           .resizable()
           .scaledToFit()
       }
@@ -33,10 +35,16 @@ struct DetailView: View {
         }
       }
     }
+    .task {
+      if viewModel.highResImage == nil,
+          let phAsset = viewModel.asset.phAsset {
+        viewModel.highResImage = await loadHighResImage(of: phAsset)
+      }
+    }
   }
   
   var dateDescription: String {
-    let date = asset.creationDate
+    let date = viewModel.asset.creationDate
     let calendar = Calendar.current
     let formatter = DateFormatter()
     formatter.locale = .current
@@ -65,16 +73,23 @@ struct DetailView: View {
   }
   
   var timeDescription: String {
+    let date = viewModel.asset.creationDate
     let formatter = DateFormatter()
     formatter.locale = .current
     formatter.dateFormat = "a h:mm"
     
-    return formatter.string(from: asset.creationDate)
+    return formatter.string(from: date)
   }
 }
 
 #Preview {
   NavigationView {
-    DetailView(asset: .init(id: "Test1", name: "풍경", image: .init(resource: .sample1), creationDate: .now, phAsset: nil))
+    DetailView(
+      viewModel: .init(
+        asset: .init(id: "Test1",
+                     name: "풍경",
+                     image: .sample1,
+                     creationDate: .now,
+                     phAsset: nil)))
   }
 }

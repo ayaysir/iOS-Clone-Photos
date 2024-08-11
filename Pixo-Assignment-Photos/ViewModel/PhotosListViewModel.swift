@@ -8,26 +8,6 @@
 import UIKit
 import Photos
 
-struct LibraryImage: Identifiable {
-  let id: String
-  let name: String
-  var image: UIImage?
-  let creationDate: Date
-  let phAsset: PHAsset?
-}
-
-func requestPhotosReadWriteAuth() async -> Bool {
-  let status = await PHPhotoLibrary.requestAuthorization(for: .readWrite)
-  return switch status {
-  case .notDetermined, .restricted, .denied:
-    false
-  case .authorized, .limited:
-    true
-  @unknown default:
-    false
-  }
-}
-
 class PhotosListViewModel: ObservableObject {
   let manager = PHCachingImageManager()
   let isPreview: Bool
@@ -65,7 +45,6 @@ class PhotosListViewModel: ObservableObject {
     
     let fetchOptions = PHFetchOptions()
     fetchOptions.sortDescriptors = [
-      // TODO: - 사진 정렬
       NSSortDescriptor(key: "creationDate", ascending: true)
     ]
     
@@ -99,7 +78,6 @@ class PhotosListViewModel: ObservableObject {
   }
   
   func loadPhoto(id: String) {
-    
     guard let index = assets.firstIndex(where: { $0.id == id }),
           let phAsset = assets[index].phAsset,
           assets[index].image == nil else {

@@ -27,7 +27,7 @@ struct PhotosListView: View {
           LazyVGrid(columns: columns, spacing: MARGIN) {
             ForEach(viewModel.assets) { asset in
               NavigationLink {
-                DetailView(asset: asset)
+                DetailView(viewModel: .init(asset: asset))
               } label: {
                 ZStack {
                   Image(uiImage: asset.image ?? .sample1)
