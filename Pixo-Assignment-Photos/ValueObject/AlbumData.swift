@@ -7,7 +7,8 @@
 
 import UIKit
 
-struct AlbumCellData {
+struct AlbumData: Identifiable {
+  let id: String
   var thumbnail: UIImage
   var title: String
   var count: Int
