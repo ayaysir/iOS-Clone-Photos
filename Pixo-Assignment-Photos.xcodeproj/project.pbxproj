@@ -25,6 +25,8 @@
 		443472032C68AF730052BD53 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443472022C68AF730052BD53 /* DetailViewModel.swift */; };
 		443472052C68B4500052BD53 /* ForYouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443472042C68B4500052BD53 /* ForYouView.swift */; };
 		443472072C68BAB20052BD53 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443472062C68BAB20052BD53 /* SearchView.swift */; };
+		443472092C68BE770052BD53 /* AlbumsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443472082C68BE770052BD53 /* AlbumsView.swift */; };
+		4434720B2C68CA060052BD53 /* AlbumCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4434720A2C68CA060052BD53 /* AlbumCellData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		443472022C68AF730052BD53 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		443472042C68B4500052BD53 /* ForYouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForYouView.swift; sourceTree = "<group>"; };
 		443472062C68BAB20052BD53 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		443472082C68BE770052BD53 /* AlbumsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsView.swift; sourceTree = "<group>"; };
+		4434720A2C68CA060052BD53 /* AlbumCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCellData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 				442425E42C64F61E00A457C3 /* DetailView.swift */,
 				443472042C68B4500052BD53 /* ForYouView.swift */,
 				443472062C68BAB20052BD53 /* SearchView.swift */,
+				443472082C68BE770052BD53 /* AlbumsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				443471FD2C68AB240052BD53 /* LibraryImage.swift */,
+				4434720A2C68CA060052BD53 /* AlbumCellData.swift */,
 			);
 			path = ValueObject;
 			sourceTree = "<group>";
@@ -274,7 +280,9 @@
 				443472032C68AF730052BD53 /* DetailViewModel.swift in Sources */,
 				443471FB2C67B1280052BD53 /* PhotoDetailRepresentedView.swift in Sources */,
 				443472072C68BAB20052BD53 /* SearchView.swift in Sources */,
+				4434720B2C68CA060052BD53 /* AlbumCellData.swift in Sources */,
 				443472012C68AB790052BD53 /* PhotosService.swift in Sources */,
+				443472092C68BE770052BD53 /* AlbumsView.swift in Sources */,
 				442425E82C6675FD00A457C3 /* View+.swift in Sources */,
 				442425B82C62584C00A457C3 /* Pixo_Assignment_Photos.xcdatamodeld in Sources */,
 			);
