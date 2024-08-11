@@ -77,21 +77,15 @@ class PhotosListViewModel: ObservableObject {
     }
   }
   
-  func loadPhoto(id: String) {
+  func loadPhoto(id: String) async {
     guard let index = assets.firstIndex(where: { $0.id == id }),
           let phAsset = assets[index].phAsset,
           assets[index].image == nil else {
       return
     }
     
-    manager.requestImage(for: phAsset,
-                         targetSize: CGSize(width: 300, height: 300),
-                         contentMode: .aspectFill,
-                         options: thumbnailRequestOption) { image, info in
-      guard let image else {
-        return
-      }
-      
+    let image = await loadThumbnailResImage(of: phAsset, width: 300)
+    DispatchQueue.main.async {
       self.assets[index].image = image
     }
   }

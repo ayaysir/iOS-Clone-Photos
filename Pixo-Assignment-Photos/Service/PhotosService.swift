@@ -21,9 +21,26 @@ func requestPhotosReadWriteAuth() async -> Bool {
   }
 }
 
+/// PHAsset의 섬네일용 이미지를 불러옵니다.
+func loadThumbnailResImage(of phAsset: PHAsset, width: CGFloat = 50) async -> UIImage? {
+  return await withCheckedContinuation { continuation in
+    let manager = PHCachingImageManager()
+    let requestOption = PHImageRequestOptions()
+    requestOption.deliveryMode = .highQualityFormat
+    requestOption.isSynchronous = false
+    
+    manager.requestImage(for: phAsset,
+                         targetSize: CGSize(width: width, height: width),
+                         contentMode: .aspectFill,
+                         options: requestOption) { image, info in
+      continuation.resume(returning: image)
+    }
+  }
+}
+
 /// PHAsset의 고해상도 이미지를 불러옵니다.
 func loadHighResImage(of phAsset: PHAsset) async -> UIImage? {
-  await withCheckedContinuation { continuation in
+  return await withCheckedContinuation { continuation in
     let manager = PHCachingImageManager()
     let requestOption = PHImageRequestOptions()
     requestOption.deliveryMode = .highQualityFormat

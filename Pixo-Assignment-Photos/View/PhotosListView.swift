@@ -37,10 +37,8 @@ struct PhotosListView: View {
                     .clipped()
                     .aspectRatio(1, contentMode: .fit)
                 }
-                
-                .onAppear {
-                  // print("\(asset.id)")
-                  viewModel.loadPhoto(id: asset.id)
+                .task {
+                  await viewModel.loadPhoto(id: asset.id)
                 }
               }
             }
