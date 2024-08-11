@@ -31,8 +31,9 @@ struct AlbumsView: View {
   private func albumCell(data: AlbumData) -> some View {
     VStack {
       ZStack {
-        Image(uiImage: data.thumbnail)
+        Image(uiImage: data.thumbnail ?? .emptyAlbum)
           .resizable()
+          .aspectRatio(contentMode: .fill)
           .frame(width: albumGridHeight, height: albumGridHeight)
           .foregroundStyle(.gray)
           .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -166,8 +167,8 @@ struct AlbumsView: View {
       .listStyle(.inset)
       .navigationBarTitleDisplayMode(.large)
       .navigationTitle("Albums")
-      .onAppear {
-        albums = loadAlbums()
+      .task {
+        albums = await loadAlbums()
       }
     }
   }

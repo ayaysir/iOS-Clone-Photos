@@ -56,18 +56,36 @@ func loadHighResImage(of phAsset: PHAsset) async -> UIImage? {
 }
 
 /// 사진 라이브러리에 있는 앨범 목록을 불러옵니다.
-func loadAlbums() -> [AlbumData] {
+func loadAlbums() async -> [AlbumData] {
   var fetchedAlbums: [AlbumData] = []
   
   let fetchOptions = PHFetchOptions()
-  let collections = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .albumRegular, options: fetchOptions)
+  let collections = PHAssetCollection.fetchAssetCollections(
+    with: .album, 
+    subtype: .albumRegular,
+    options: fetchOptions
+  )
   
-  collections.enumerateObjects { collection, _,  _ in
+  for i in 0..<collections.count {
+    let collection = collections[i]
     let assets = PHAsset.fetchAssets(in: collection, options: nil)
-    if assets.count > 0 {
-      let albumData = AlbumData(id: collection.localIdentifier, thumbnail: .sample1, title: collection.localizedTitle ?? "Untitled", count: assets.count)
-      fetchedAlbums.append(albumData)
-    }
+    
+    let thumbnail: UIImage? = await {
+      if let firstAsset = assets.firstObject {
+        await loadThumbnailResImage(of: firstAsset, width: 300)
+      } else {
+        nil
+      }
+    }()
+    
+    let albumData = AlbumData(
+      id: collection.localIdentifier,
+      thumbnail: thumbnail,
+      title: collection.localizedTitle ?? "Untitled",
+      count: assets.count
+    )
+    
+    fetchedAlbums.append(albumData)
   }
   
   return fetchedAlbums
