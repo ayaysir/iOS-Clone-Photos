@@ -25,6 +25,46 @@ struct PhotosService {
     }
   }
   
+  func fetchAllPhotosList() -> PHFetchResult<PHAsset>? {
+    let fetchOptions = PHFetchOptions()
+    fetchOptions.sortDescriptors = [
+      NSSortDescriptor(key: "creationDate", ascending: true)
+    ]
+    
+    return PHAsset.fetchAssets(with: .image, options: fetchOptions)
+  }
+  
+  func fetchLatestPhoto() -> PHAsset? {
+    let fetchOptions = PHFetchOptions()
+    fetchOptions.sortDescriptors = [
+      NSSortDescriptor(key: "creationDate", ascending: false) // 내림차순 정렬
+    ]
+    fetchOptions.fetchLimit = 1 // 첫번째(최신) 1개만 가져옴
+    
+    return PHAsset.fetchAssets(with: .image, options: fetchOptions).firstObject
+  }
+  
+  func appendAsset(result: PHFetchResult<PHAsset>, to assets: inout [LibraryImage]) {
+    if result.count > 0 {
+      for i in 0..<result.count {
+        let asset = result.object(at: i)
+        
+        guard let creationDate = asset.creationDate else {
+          return
+        }
+        
+        let libraryImage = LibraryImage(
+          id: asset.localIdentifier,
+          name: asset.description,
+          image: nil,
+          creationDate: creationDate,
+          phAsset: asset)
+        
+        assets.append(libraryImage)
+      }
+    }
+  }
+  
   /// PHAsset의 섬네일용 이미지를 불러옵니다.
   func loadThumbnailResImage(of phAsset: PHAsset, width: CGFloat = 50) async -> UIImage? {
     return await withCheckedContinuation { continuation in
@@ -96,6 +136,8 @@ struct PhotosService {
   }
   
   /// PHAsset을 이용해 사진을 삭제합니다.
+  /// - Parameter phAssets: 삭제할 `PHAsset` 객체들의 배열.
+  /// - Returns: 삭제 작업이 성공하면 `true`, 실패하면 `false`를 반환합니다.
   func deletePhoto(phAssets: [PHAsset]) async -> Bool {
     return await withCheckedContinuation { continuation in
       PHPhotoLibrary.shared().performChanges {
@@ -103,6 +145,26 @@ struct PhotosService {
       } completionHandler: { isSuccess, error in
         continuation.resume(returning: isSuccess)
       }
+    }
+  }
+  
+  /// 선택한 사진을 복제합니다.
+  /// - Returns: 복제 작업이 성공하면 `true`, 실패하면 `false`를 반환합니다.
+  func duplicatePhoto(phAsset: PHAsset) async -> Bool {
+    await withCheckedContinuation { continuation in
+      PHImageManager.default().requestImageDataAndOrientation(
+        for: phAsset, options: nil) { imageData, dataUTI, orientation, info in
+          guard let imageData else {
+            return continuation.resume(returning: false)
+          }
+          
+          PHPhotoLibrary.shared().performChanges {
+            let request = PHAssetCreationRequest.forAsset()
+            request.addResource(with: .photo, data: imageData, options: nil)
+          } completionHandler: { isSuccess, error in
+            continuation.resume(returning: isSuccess)
+          }
+        }
     }
   }
 }

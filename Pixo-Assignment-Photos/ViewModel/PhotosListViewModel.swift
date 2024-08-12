@@ -37,44 +37,20 @@ class PhotosListViewModel: ObservableObject {
     }
   }
   
-  func fetch(completeHandler: (() -> Void)? = nil) {
+  func fetch() {
     if isPreview {
       fetchForPreview()
       return
     }
     
-    let fetchOptions = PHFetchOptions()
-    fetchOptions.sortDescriptors = [
-      NSSortDescriptor(key: "creationDate", ascending: true)
-    ]
-    
-    result = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+    result = PhotosService.shared.fetchAllPhotosList()
     
     guard let result else {
       return
     }
     
     assetsCount = result.count
-    print(assetsCount)
-    
-    if result.count > 0 {
-      for i in 0..<result.count {
-        let asset = result.object(at: i)
-        
-        guard let creationDate = asset.creationDate else {
-          return
-        }
-        
-        let libraryImage = LibraryImage(
-          id: asset.localIdentifier,
-          name: asset.description,
-          image: nil,
-          creationDate: creationDate,
-          phAsset: asset)
-        
-        self.assets.append(libraryImage)
-      }
-    }
+    PhotosService.shared.appendAsset(result: result, to: &assets)
   }
   
   func loadPhoto(id: String) async {
@@ -98,6 +74,26 @@ class PhotosListViewModel: ObservableObject {
     
     if await PhotosService.shared.deletePhoto(phAssets: [phAsset]) {
       return index
+    }
+    
+    return nil
+  }
+  
+  func duplicatePhoto(id: String) async -> LibraryImage? {
+    guard let index = assets.firstIndex(where: { $0.id == id }),
+          let phAsset = assets[index].phAsset else {
+      return nil
+    }
+    
+    if await PhotosService.shared.duplicatePhoto(phAsset: phAsset),
+       let phAsset = PhotosService.shared.fetchLatestPhoto() {
+      
+      return .init(
+        id: phAsset.localIdentifier,
+        name: phAsset.description,
+        creationDate: phAsset.creationDate ?? .now,
+        phAsset: phAsset
+      )
     }
     
     return nil

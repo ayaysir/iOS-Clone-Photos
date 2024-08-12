@@ -24,6 +24,18 @@ struct PhotosListView: View {
   private func imageContextMenuItems(selectedAsset: LibraryImage) -> some View {
     Group {
       Button {
+        Task {
+          if let asset = await viewModel.duplicatePhoto(id: selectedAsset.id) {
+            withAnimation {
+              viewModel.assets.append(asset)
+            }
+          }
+        }
+      } label: {
+        Label("복제", systemImage: "plus.square.on.square")
+      }
+      
+      Button {
         
       } label: {
         Label("앨범에 추가", systemImage: "rectangle.stack.badge.plus")
@@ -83,12 +95,12 @@ struct PhotosListView: View {
         .task {
           if await PhotosService.shared.requestPhotosReadWriteAuth(),
              isFirstrun {
-            viewModel.fetch {
-              if #unavailable(iOS 17.0),
-                 let last = viewModel.assets.last {
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(10)) {
-                  scrollProxy.scrollTo(last.id, anchor: .bottom)
-                }
+            viewModel.fetch()
+            
+            if #unavailable(iOS 17.0),
+               let last = viewModel.assets.last {
+              DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(10)) {
+                scrollProxy.scrollTo(last.id, anchor: .bottom)
               }
             }
             
