@@ -20,6 +20,24 @@ struct PhotosListView: View {
     }
   }
   
+  var imageContextMenuItems: some View {
+    Group {
+      Button {
+        
+      } label: {
+        Label("앨범에 추가", systemImage: "rectangle.stack.badge.plus")
+      }
+      
+      Divider()
+      
+      Button(role: .destructive) {
+        
+      } label: {
+        Label("삭제", systemImage: "trash")
+      }
+    }
+  }
+  
   var body: some View {
     NavigationView {
       ScrollViewReader { scrollProxy in
@@ -39,6 +57,20 @@ struct PhotosListView: View {
                 }
                 .task {
                   await viewModel.loadPhoto(id: asset.id)
+                }
+                .apply {
+                  if #available(iOS 16.0, *) {
+                    $0.contextMenu {
+                      imageContextMenuItems
+                    } preview: {
+                      Image(uiImage: asset.image ?? .sample1)
+                        .resizable()
+                    }
+                  } else {
+                    $0.contextMenu(menuItems: {
+                      imageContextMenuItems
+                    })
+                  }
                 }
               }
             }
