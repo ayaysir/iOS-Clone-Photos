@@ -138,7 +138,7 @@ struct PhotosService {
     return fetchedAlbums
   }
   
-  func loadAssets(of collectionId: String) -> PHFetchResult<PHAsset>? {
+  func loadCollection(of collectionId: String) -> PHAssetCollection? {
     let fetchOptions = PHFetchOptions()
     // collection.localIdentifier가 특정 값인 경우만 가져옴
     fetchOptions.predicate = NSPredicate(format: "localIdentifier == %@", collectionId)
@@ -149,7 +149,11 @@ struct PhotosService {
         options: fetchOptions
     )
     
-    guard let collection = collections.firstObject else {
+    return collections.firstObject
+  }
+  
+  func loadAssets(of collectionId: String) -> PHFetchResult<PHAsset>? {
+    guard let collection = loadCollection(of: collectionId) else {
       return nil
     }
     
@@ -163,6 +167,7 @@ struct PhotosService {
     return await withCheckedContinuation { continuation in
       PHPhotoLibrary.shared().performChanges {
         PHAssetChangeRequest.deleteAssets(phAssets as NSFastEnumeration)
+        
       } completionHandler: { isSuccess, error in
         continuation.resume(returning: isSuccess)
       }
@@ -172,7 +177,7 @@ struct PhotosService {
   /// 선택한 사진을 복제합니다.
   /// - Returns: 복제 작업이 성공하면 `true`, 실패하면 `false`를 반환합니다.
   func duplicatePhoto(phAsset: PHAsset) async -> Bool {
-    await withCheckedContinuation { continuation in
+    return await withCheckedContinuation { continuation in
       PHImageManager.default().requestImageDataAndOrientation(
         for: phAsset, options: nil) { imageData, dataUTI, orientation, info in
           guard let imageData else {
@@ -186,6 +191,22 @@ struct PhotosService {
             continuation.resume(returning: isSuccess)
           }
         }
+    }
+  }
+  
+  func addPhotoToAlbum(phAsset: PHAsset, album: PHAssetCollection) async -> Bool {
+    return await withCheckedContinuation { continuation in
+      PHPhotoLibrary.shared().performChanges {
+        if let albumChangeRequest = PHAssetCollectionChangeRequest(for: album) {
+          // PHObjectPlaceholder를 통해 추가할 자산을 요청합니다.
+          let assetPlaceholder = PHObjectPlaceholder()
+          
+          // 앨범에 해당 사진을 추가합니다.
+          albumChangeRequest.addAssets([phAsset] as NSArray)
+        }
+      } completionHandler: { isSuccess, error in
+        continuation.resume(returning: isSuccess)
+      }
     }
   }
 }
