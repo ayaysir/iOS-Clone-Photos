@@ -28,7 +28,6 @@ struct SearchView: View {
             .foregroundStyle(.gray)
             .multilineTextAlignment(.center)
         }
-        
       }
       .padding()
       .navigationBarTitleDisplayMode(.inline)

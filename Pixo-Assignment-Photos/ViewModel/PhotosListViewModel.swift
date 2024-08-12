@@ -90,13 +90,16 @@ class PhotosListViewModel: ObservableObject {
     }
   }
   
-  func deletePhoto(id: String) {
+  func deletePhoto(id: String) async -> Int? {
     guard let index = assets.firstIndex(where: { $0.id == id }),
-          let phAsset = assets[index].phAsset,
-          assets[index].image == nil else {
-      return
+          let phAsset = assets[index].phAsset else {
+      return nil
     }
     
-    PhotosService.shared.deletePhoto(phAssets: [phAsset])
+    if await PhotosService.shared.deletePhoto(phAssets: [phAsset]) {
+      return index
+    }
+    
+    return nil
   }
 }

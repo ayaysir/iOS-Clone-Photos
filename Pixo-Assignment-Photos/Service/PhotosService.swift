@@ -96,9 +96,13 @@ struct PhotosService {
   }
   
   /// PHAsset을 이용해 사진을 삭제합니다.
-  func deletePhoto(phAssets: [PHAsset]) {
-    PHPhotoLibrary.shared().performChanges {
-      PHAssetChangeRequest.deleteAssets(phAssets as NSFastEnumeration)
+  func deletePhoto(phAssets: [PHAsset]) async -> Bool {
+    return await withCheckedContinuation { continuation in
+      PHPhotoLibrary.shared().performChanges {
+        PHAssetChangeRequest.deleteAssets(phAssets as NSFastEnumeration)
+      } completionHandler: { isSuccess, error in
+        continuation.resume(returning: isSuccess)
+      }
     }
   }
 }
