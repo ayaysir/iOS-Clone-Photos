@@ -25,6 +25,7 @@ struct PhotosService {
     }
   }
   
+  /// 사진 라이브러리의 전체 리스트를 불러옵니다.
   func fetchAllPhotosList() -> PHFetchResult<PHAsset>? {
     let fetchOptions = PHFetchOptions()
     fetchOptions.sortDescriptors = [
@@ -34,6 +35,7 @@ struct PhotosService {
     return PHAsset.fetchAssets(with: .image, options: fetchOptions)
   }
   
+  /// 최신 사진 1장의 PHAsset을 가져옵니다.
   func fetchLatestPhoto() -> PHAsset? {
     let fetchOptions = PHFetchOptions()
     fetchOptions.sortDescriptors = [
@@ -44,6 +46,7 @@ struct PhotosService {
     return PHAsset.fetchAssets(with: .image, options: fetchOptions).firstObject
   }
   
+  /// result로부터 가공하여 [LibraryImage] 배열에 추가합니다.
   func appendAsset(result: PHFetchResult<PHAsset>, to assets: inout [LibraryImage]) {
     if result.count > 0 {
       for i in 0..<result.count {
@@ -133,6 +136,24 @@ struct PhotosService {
     }
     
     return fetchedAlbums
+  }
+  
+  func loadAssets(of collectionId: String) -> PHFetchResult<PHAsset>? {
+    let fetchOptions = PHFetchOptions()
+    // collection.localIdentifier가 특정 값인 경우만 가져옴
+    fetchOptions.predicate = NSPredicate(format: "localIdentifier == %@", collectionId)
+
+    let collections = PHAssetCollection.fetchAssetCollections(
+        with: .album,
+        subtype: .albumRegular,
+        options: fetchOptions
+    )
+    
+    guard let collection = collections.firstObject else {
+      return nil
+    }
+    
+    return PHAsset.fetchAssets(in: collection, options: nil)
   }
   
   /// PHAsset을 이용해 사진을 삭제합니다.

@@ -31,12 +31,23 @@ struct AlbumsView: View {
   private func albumCell(data: AlbumData) -> some View {
     VStack {
       ZStack {
-        Image(uiImage: data.thumbnail ?? .emptyAlbum)
-          .resizable()
-          .aspectRatio(contentMode: .fill)
-          .frame(width: albumGridHeight, height: albumGridHeight)
-          .foregroundStyle(.gray)
-          .clipShape(RoundedRectangle(cornerRadius: 10))
+        NavigationLink {
+          if data.count == 0 {
+            NotFoundView(
+              title: "No Photos or Videos",
+              comment: "You can take photos and videos using the camera, or sync photos and videos onto your iPhone using Finder."
+            )
+          } else {
+            PhotosListView(viewModel: .init(listMode: .album(albumData: data)))
+          }
+        } label: {
+          Image(uiImage: data.thumbnail ?? .emptyAlbum)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: albumGridHeight, height: albumGridHeight)
+            .foregroundStyle(.gray)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+        }
       }
       VStack(alignment: .leading, spacing: -2.4) {
         Text(data.title)

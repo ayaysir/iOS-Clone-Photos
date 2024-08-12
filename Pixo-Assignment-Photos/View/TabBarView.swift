@@ -33,5 +33,7 @@ struct TabBarView: View {
 }
 
 #Preview {
-  TabBarView(photosListViewModel: .init(isPreview: true))
+  let viewModel = PhotosListViewModel(listMode: .preview)
+  viewModel.fetch()
+  return TabBarView(photosListViewModel: viewModel)
 }

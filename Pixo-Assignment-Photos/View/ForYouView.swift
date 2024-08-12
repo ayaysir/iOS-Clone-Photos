@@ -10,14 +10,10 @@ import SwiftUI
 struct ForYouView: View {
   var body: some View {
     NavigationView {
-      VStack {
-        Text("No Content")
-          .font(.title)
-          .bold()
-        Text("Photos scans your library to offer content curated for you. Connect your iPhone to power overnight to continue scanning.")
-          .foregroundStyle(.gray)
-          .multilineTextAlignment(.center)
-      }
+      NotFoundView(
+        title: "No Content",
+        comment: "Photos scans your library to offer content curated for you. Connect your iPhone to power overnight to continue scanning."
+      )
       .padding()
       .navigationBarTitleDisplayMode(.inline)
       .navigationTitle("For You")

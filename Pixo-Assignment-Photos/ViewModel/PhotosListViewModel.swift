@@ -8,9 +8,15 @@
 import UIKit
 import Photos
 
+enum PhotosListMode {
+  case preview
+  case all
+  case album(albumData: AlbumData)
+}
+
 class PhotosListViewModel: ObservableObject {
   let manager = PHCachingImageManager()
-  let isPreview: Bool
+  let listMode: PhotosListMode
   @Published var assetsCount = 0
   @Published var assets: [LibraryImage] = .init()
   @Published var selectedAsset: LibraryImage?
@@ -18,15 +24,18 @@ class PhotosListViewModel: ObservableObject {
   private var result: PHFetchResult<PHAsset>?
   private var thumbnailRequestOption = PHImageRequestOptions()
   
-  init(isPreview: Bool = false) {
-    self.isPreview = isPreview
+  init(listMode: PhotosListMode = .all) {
+    self.listMode = listMode
     thumbnailRequestOption.deliveryMode = .opportunistic
     thumbnailRequestOption.isSynchronous = false
   }
   
   private func fetchForPreview() {
     let sampleImages: [UIImage] = [.sample1, .sample2, .sample3]
-    for i in 0..<50 {
+    let maxCount = 50
+    assetsCount = maxCount
+    
+    for i in 0..<maxCount {
       self.assets.append(
         .init(id: "Temp_\(i)",
               name: "",
@@ -38,12 +47,15 @@ class PhotosListViewModel: ObservableObject {
   }
   
   func fetch() {
-    if isPreview {
+    switch listMode {
+    case .preview:
       fetchForPreview()
       return
+    case .all:
+      result = PhotosService.shared.fetchAllPhotosList()
+    case .album(let albumData):
+      result = PhotosService.shared.loadAssets(of: albumData.id)
     }
-    
-    result = PhotosService.shared.fetchAllPhotosList()
     
     guard let result else {
       return

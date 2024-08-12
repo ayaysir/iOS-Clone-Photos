@@ -30,6 +30,7 @@
 		4434720D2C698B590052BD53 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4434720C2C698B590052BD53 /* UIApplication+.swift */; };
 		4434720F2C698C590052BD53 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4434720E2C698C590052BD53 /* UIView+.swift */; };
 		443472112C698DD10052BD53 /* TabBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443472102C698DD10052BD53 /* TabBarModifier.swift */; };
+		44C33EEC2C69E13A00E30E11 /* NotFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C33EEB2C69E13A00E30E11 /* NotFoundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		4434720C2C698B590052BD53 /* UIApplication+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		4434720E2C698C590052BD53 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		443472102C698DD10052BD53 /* TabBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModifier.swift; sourceTree = "<group>"; };
+		44C33EEB2C69E13A00E30E11 /* NotFoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				442425C32C62617700A457C3 /* IconWithText.swift */,
+				44C33EEB2C69E13A00E30E11 /* NotFoundView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				4434720B2C68CA060052BD53 /* AlbumData.swift in Sources */,
 				443472012C68AB790052BD53 /* PhotosService.swift in Sources */,
 				443472092C68BE770052BD53 /* AlbumsView.swift in Sources */,
+				44C33EEC2C69E13A00E30E11 /* NotFoundView.swift in Sources */,
 				442425E82C6675FD00A457C3 /* View+.swift in Sources */,
 				442425B82C62584C00A457C3 /* Pixo_Assignment_Photos.xcdatamodeld in Sources */,
 			);

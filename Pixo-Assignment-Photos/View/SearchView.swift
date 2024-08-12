@@ -9,30 +9,30 @@ import SwiftUI
 
 struct SearchView: View {
   @State private var searchText = ""
+  @State private var noResultComment = "There were no results for \".\"\nTry a new search."
   
   var body: some View {
     NavigationView {
       VStack {
         if searchText.isEmpty {
-          Text("No Suggestions")
-            .font(.title)
-            .bold()
-          Text("Photos scans your library to offer Search Suggestions. Connect your iPhone to power overnight to continue scanning.")
-            .foregroundStyle(.gray)
-            .multilineTextAlignment(.center)
+          NotFoundView(
+            title: "No Suggestions",
+            comment: "Photos scans your library to offer Search Suggestions. Connect your iPhone to power overnight to continue scanning."
+          )
         } else {
-          Text("No Results")
-            .font(.title)
-            .bold()
-          Text("There were no results for \"\(searchText).\"\nTry a new search.")
-            .foregroundStyle(.gray)
-            .multilineTextAlignment(.center)
+          NotFoundView(
+            title: "No Results",
+            bindingComment: $noResultComment
+          )
         }
       }
       .padding()
       .navigationBarTitleDisplayMode(.inline)
       .navigationTitle("Search")
       .searchable(text: $searchText)
+      .onChange(of: searchText) { newValue in
+        noResultComment = "There were no results for \"\(newValue).\"\nTry a new search."
+      }
     }
   }
 }
