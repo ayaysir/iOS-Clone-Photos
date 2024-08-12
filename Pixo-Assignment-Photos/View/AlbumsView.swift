@@ -168,7 +168,7 @@ struct AlbumsView: View {
       .navigationBarTitleDisplayMode(.large)
       .navigationTitle("Albums")
       .task {
-        albums = await loadAlbums()
+        albums = await PhotosService.shared.loadAlbums()
       }
     }
   }

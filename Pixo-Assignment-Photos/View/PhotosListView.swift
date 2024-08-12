@@ -77,7 +77,7 @@ struct PhotosListView: View {
           }
         }
         .task {
-          if await requestPhotosReadWriteAuth(),
+          if await PhotosService.shared.requestPhotosReadWriteAuth(),
              isFirstrun {
             viewModel.fetch {
               if #unavailable(iOS 17.0),

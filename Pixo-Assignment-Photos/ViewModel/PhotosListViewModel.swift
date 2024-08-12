@@ -84,9 +84,19 @@ class PhotosListViewModel: ObservableObject {
       return
     }
     
-    let image = await loadThumbnailResImage(of: phAsset, width: 300)
+    let image = await PhotosService.shared.loadThumbnailResImage(of: phAsset, width: 300)
     DispatchQueue.main.async {
       self.assets[index].image = image
     }
+  }
+  
+  func deletePhoto(id: String) {
+    guard let index = assets.firstIndex(where: { $0.id == id }),
+          let phAsset = assets[index].phAsset,
+          assets[index].image == nil else {
+      return
+    }
+    
+    PhotosService.shared.deletePhoto(phAssets: [phAsset])
   }
 }

@@ -62,7 +62,7 @@ struct DetailView: View {
     .task {
       if viewModel.highResImage == nil,
          let phAsset = viewModel.asset.phAsset {
-        viewModel.highResImage = await loadHighResImage(of: phAsset)
+        viewModel.highResImage = await PhotosService.shared.loadHighResImage(of: phAsset)
       }
     }
   }
