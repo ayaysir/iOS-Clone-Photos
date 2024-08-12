@@ -39,11 +39,25 @@ struct DetailView: View {
             Text(timeDescription)
               .font(.system(size: 11))
           }
+        } else {
+          VStack {
+            Text(" ")
+              .font(.system(size: 16))
+            Text(" ")
+              .font(.system(size: 11))
+          }
         }
       }
     }
     .onTapGesture {
       detailReprViewModel.isFullscreen.toggle()
+    }
+    .onChange(of: detailReprViewModel.isFullscreen) { newValue in
+      if newValue {
+        TabBarModifier.hideTabBar()
+      } else {
+        TabBarModifier.showTabBar()
+      }
     }
     .task {
       if viewModel.highResImage == nil,
