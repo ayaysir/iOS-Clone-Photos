@@ -5,7 +5,9 @@
 //  Created by 윤범태 on 8/13/24.
 //
 
-import Foundation
+import Combine
+
+let globalAlbumUpdatedPublisher = PassthroughSubject<Void, Never>()
 
 @MainActor
 final class AddToAlbumsViewModel: ObservableObject {
@@ -40,5 +42,9 @@ final class AddToAlbumsViewModel: ObservableObject {
     }
     
     return result
+  }
+  
+  func publishAlbumUpdated() {
+    globalAlbumUpdatedPublisher.send()
   }
 }

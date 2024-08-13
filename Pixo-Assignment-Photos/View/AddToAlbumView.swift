@@ -51,6 +51,7 @@ struct AddToAlbumView: View {
                 Task {
                   inputResult = await viewModel.addToAlbum(asset: viewModel.selectedPhoto, to: data)
                   showResultAlert = true
+                  viewModel.publishAlbumUpdated()
                 }
               } label: {
                 AlbumCellView(data: data)
@@ -94,6 +95,7 @@ struct AddToAlbumView: View {
         Button("저장") {
           Task {
             if await viewModel.createNewAlbum(title: newAlbumTitle) {
+              viewModel.publishAlbumUpdated()
             } else {
               showCreateAlbumAlert = true
             }

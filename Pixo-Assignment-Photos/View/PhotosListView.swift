@@ -64,7 +64,7 @@ struct PhotosListView: View {
               DetailView(viewModel: .init(asset: asset))
             } label: {
               ZStack {
-                Image(uiImage: asset.image ?? .sample1)
+                Image(uiImage: asset.image ?? .emptyAlbum)
                   .resizable()
                   .aspectRatio(contentMode: .fill)
                   .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)

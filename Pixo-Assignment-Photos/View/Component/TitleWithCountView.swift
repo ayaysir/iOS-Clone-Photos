@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TitleWithCountView: View {
-  @State var title: String
-  @State var count: Int
+  let title: String
+  let count: Int
   
   var body: some View {
     VStack(alignment: .leading, spacing: -2) {
@@ -25,5 +25,5 @@ struct TitleWithCountView: View {
 }
 
 #Preview {
-  TitleWithCountView(title: "사람들", count: 15)
+  TitleWithCountView(title: "사람들", count: 51)
 }

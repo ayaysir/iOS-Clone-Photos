@@ -13,7 +13,11 @@ final class AlbumsViewModel: ObservableObject {
   
   init() {
     Task {
-      self.albums = await PhotosService.shared.loadAlbums()
+      await loadAlbums()
     }
+  }
+  
+  func loadAlbums() async {
+    self.albums = await PhotosService.shared.loadAlbums()
   }
 }
