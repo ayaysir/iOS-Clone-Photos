@@ -34,14 +34,14 @@ struct PhotosListView: View {
           }
         }
       } label: {
-        Label("복제", systemImage: "plus.square.on.square")
+        Label("Duplicate", systemImage: "plus.square.on.square")
       }
       
       Button {
         showAddToAlbumSheet.toggle()
         viewModel.selectedAsset = selectedAsset
       } label: {
-        Label("앨범에 추가", systemImage: "rectangle.stack.badge.plus")
+        Label("Add to Album", systemImage: "rectangle.stack.badge.plus")
       }
       
       Divider()
@@ -50,7 +50,7 @@ struct PhotosListView: View {
         showDeleteActionSheet.toggle()
         viewModel.selectedAsset = selectedAsset
       } label: {
-        Label("삭제", systemImage: "trash")
+        Label("Delete", systemImage: "trash")
       }
     }
   }
@@ -116,7 +116,7 @@ struct PhotosListView: View {
         }
       }
       // .ignoresSafeArea(.all, edges: .top)
-      .confirmationDialog("사진 삭제 경고", isPresented: $showDeleteActionSheet) {
+      .confirmationDialog("Delete Photo", isPresented: $showDeleteActionSheet) {
         Button(role: .destructive) {
           if let selectedAsset = viewModel.selectedAsset {
             Task {
@@ -128,10 +128,10 @@ struct PhotosListView: View {
             }
           }
         } label: {
-          Text("사진 삭제")
+          Text("Delete Photo")
         }
       } message: {
-        Text("이 사진이 기기에서 삭제됩니다. 해당 사진은 '최근 삭제된 항목'에 30일간 보관됩니다.")
+        Text("This photo will be deleted from iCloud Photos on all your devices. It will be in Recently Deleted for 30 days.")
       }
       .sheet(isPresented: $showAddToAlbumSheet) {
         Group {

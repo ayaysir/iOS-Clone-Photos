@@ -35,14 +35,14 @@ struct AddToAlbumView: View {
                     .resizable()
                     .aspectRatio(1, contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                  Text("새로운 앨범...")
+                  Text("New Album...")
                 }
               }
               .buttonStyle(PlainButtonStyle())
             }
           }
           
-          Text("나의 앨범")
+          Text("My Albums")
             .font(.headline)
           
           LazyVGrid(columns: gridFlexibleColumns(2), spacing: albumGridSpacing) {
@@ -70,7 +70,7 @@ struct AddToAlbumView: View {
                   height: 40
                 )
                 .clipped()
-              Text("1장의 사진")
+              Text("1 Photo")
                 .foregroundStyle(.foreground)
             }
           }
@@ -78,21 +78,21 @@ struct AddToAlbumView: View {
         .headerProminence(.increased)
       }
       .listStyle(.inset)
-      .navigationTitle("앨범에 추가")
+      .navigationTitle("Add to Album")
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
         ToolbarItem(placement: .topBarTrailing) {
-          Button("취소") {
+          Button("Cancel") {
             dismiss()
           }
         }
       }
-      .alert("새로운 앨범", isPresented: $showNewAlbumInputAlert) {
-        TextField("제목", text: $newAlbumTitle)
-        Button("취소", role: .cancel) {
+      .alert("New Album", isPresented: $showNewAlbumInputAlert) {
+        TextField("Title", text: $newAlbumTitle)
+        Button("Cancel", role: .cancel) {
           newAlbumTitle = ""
         }
-        Button("저장") {
+        Button("Save") {
           Task {
             if await viewModel.createNewAlbum(title: newAlbumTitle) {
               viewModel.publishAlbumUpdated()
@@ -104,19 +104,19 @@ struct AddToAlbumView: View {
           }
         }
       } message: {
-        Text("이 앨범의 이름을 입력하십시오.")
+        Text("Enter a name for this album.")
       }
-      .alert("앨범에 사진 넣기", isPresented: $showResultAlert) {
-        Button("확인") {
+      .alert("Add Photos to Album", isPresented: $showResultAlert) {
+        Button("OK") {
           dismiss()
         }
       } message: {
-        Text(inputResult ? "앨범에 사진이 추가되었습니다." : "앨범에 사진이 추가되지 않았습니다.")
+        Text(inputResult ? "Photos have been added to the album." : "No photos were added to the album.")
       }
-      .alert("앨범 생성 실패", isPresented: $showCreateAlbumAlert) {
-        Button("확인") {}
+      .alert("Album Creation Failed", isPresented: $showCreateAlbumAlert) {
+        Button("OK") {}
       } message: {
-        Text("앨범에 생성되지 않았습니다.")
+        Text("Not created in album.")
       }
     }
   }

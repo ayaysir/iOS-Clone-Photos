@@ -14,7 +14,7 @@ struct TabBarView: View {
     TabView {
       PhotosListView(viewModel: photosListViewModel)
         .tabItem {
-          IconWithTextView(image: .init(systemName: "photo.fill.on.rectangle.fill"), text: "보관함")
+          IconWithTextView(image: .init(systemName: "photo.fill.on.rectangle.fill"), text: "Library")
         }
       ForYouView()
         .tabItem {
@@ -22,11 +22,11 @@ struct TabBarView: View {
         }
       AlbumsView()
         .tabItem {
-          IconWithTextView(image: .init(systemName: "square.stack.fill"), text: "앨범")
+          IconWithTextView(image: .init(systemName: "square.stack.fill"), text: "Albums")
         }
       SearchView()
         .tabItem {
-          IconWithTextView(image: .init(systemName: "magnifyingglass"), text: "검색")
+          IconWithTextView(image: .init(systemName: "magnifyingglass"), text: "Search")
         }
     }
   }

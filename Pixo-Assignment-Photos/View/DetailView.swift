@@ -22,7 +22,7 @@ struct DetailView: View {
       
       VStack {
         PhotoDetailRepresentedView(viewModel: detailReprViewModel) {
-          Image(uiImage: (viewModel.highResImage ?? viewModel.asset.image) ?? .sample1)
+          Image(uiImage: (viewModel.highResImage ?? viewModel.asset.image) ?? .emptyAlbum)
             .resizable()
             .scaledToFit()
         }
@@ -78,21 +78,21 @@ struct DetailView: View {
     
     if dateYear == currentYear {
       if calendar.isDateInToday(date) {
-        return "오늘"
+        return "Today"
       } else if calendar.isDateInYesterday(date) {
-        return "어제"
+        return "Yesterday"
       } else if calendar.isDateInWeekend(date) {
         formatter.dateFormat = "EEEE"
         return formatter.string(from: date)
       }
       
       // 올해인 경우 날짜만 표시
-      formatter.dateFormat = "M월 d일"
+      formatter.dateFormat = "MMMM d"
       return formatter.string(from: date)
     }
     
     // 올해가 아닌 경우 연도도 표시
-    formatter.dateFormat = "yyyy년 M월 d일"
+    formatter.dateFormat = "MMMM d, yyyy"
     return formatter.string(from: date)
   }
   
@@ -100,7 +100,7 @@ struct DetailView: View {
     let date = viewModel.asset.creationDate
     let formatter = DateFormatter()
     formatter.locale = .current
-    formatter.dateFormat = "a h:mm"
+    formatter.dateFormat = "h:mm a"
     
     return formatter.string(from: date)
   }
