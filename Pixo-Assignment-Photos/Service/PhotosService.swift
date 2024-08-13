@@ -107,6 +107,10 @@ struct PhotosService {
     var fetchedAlbums: [AlbumData] = []
     
     let fetchOptions = PHFetchOptions()
+    fetchOptions.sortDescriptors = [
+      NSSortDescriptor(key: "endDate", ascending: false) // 내림차순 정렬
+    ]
+    
     let collections = PHAssetCollection.fetchAssetCollections(
       with: .album,
       subtype: .albumRegular,
@@ -201,7 +205,7 @@ struct PhotosService {
       PHPhotoLibrary.shared().performChanges {
         if let albumChangeRequest = PHAssetCollectionChangeRequest(for: album) {
           // PHObjectPlaceholder를 통해 추가할 자산을 요청합니다.
-          let assetPlaceholder = PHObjectPlaceholder()
+          _ = PHObjectPlaceholder()
           
           // 앨범에 해당 사진을 추가합니다.
           albumChangeRequest.addAssets([phAsset] as NSArray)

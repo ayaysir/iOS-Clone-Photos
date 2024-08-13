@@ -20,15 +20,7 @@ struct AlbumCellView: View {
         .clipped()
         .clipShape(RoundedRectangle(cornerRadius: 10))
       
-      VStack(alignment: .leading, spacing: -2) {
-        Text(data.title)
-          .font(.subheadline)
-          .foregroundStyle(.foreground)
-        Text("\(data.count)")
-          .font(.caption)
-          .foregroundStyle(.gray)
-      }
-      .frame(maxWidth: .infinity, alignment: .leading) // 왼쪽 정렬 및 상위 뷰 크기에 맞춤
+      TitleWithCountView(title: data.title, count: data.count)
     }
   }
 }

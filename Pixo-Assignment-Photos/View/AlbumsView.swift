@@ -62,8 +62,16 @@ struct AlbumsView: View {
         Section {
           ScrollView(.horizontal) {
             LazyHGrid(rows: gridFlexibleColumns(1), spacing: albumGridSpacing) {
+              PeoplePetsThumbnailView()
+              
+              let thumbnails: [UIImage] = [
+                .sample1,
+                .sample2,
+                .sample3,
+              ]
+              
               ForEach(0..<30) { index in
-                albumCell(data: .init(id: "\(index)", thumbnail: .sample2, title: "Recent", count: index))
+                albumCell(data: .init(id: "\(index)", thumbnail: thumbnails[index % 3], title: "Recent \(index)", count: 0))
               }
             }
             .frame(height: albumGridHeight)
@@ -75,24 +83,20 @@ struct AlbumsView: View {
         Section {
           NavigationLink(destination: Text("Videos")) {
             HStack {
-              Image(systemName: "video.fill")
-                .foregroundColor(.blue)
-              Text("Videos")
+              Label("Videos", systemImage: "video.fill")
                 .foregroundColor(.blue)
               Spacer()
-              Text("1")
+              Text("0")
                 .foregroundColor(.gray)
             }
           }
           
           NavigationLink(destination: Text("Screenshots")) {
             HStack {
-              Image(systemName: "camera.viewfinder")
-                .foregroundColor(.blue)
-              Text("Screenshots")
+              Label("Screenshots", systemImage: "camera.viewfinder")
                 .foregroundColor(.blue)
               Spacer()
-              Text("6")
+              Text("0")
                 .foregroundColor(.gray)
             }
           }
@@ -103,9 +107,7 @@ struct AlbumsView: View {
         Section {
           NavigationLink(destination: Text("Imports")) {
             HStack {
-              Image(systemName: "square.and.arrow.down")
-                .foregroundColor(.blue)
-              Text("Imports")
+              Label("Imports", systemImage: "square.and.arrow.down")
                 .foregroundColor(.blue)
               Spacer()
               Text("0")
@@ -115,9 +117,7 @@ struct AlbumsView: View {
           
           NavigationLink(destination: Text("Duplicates")) {
             HStack {
-              Image(systemName: "rectangle.on.rectangle")
-                .foregroundColor(.blue)
-              Text("Duplicates")
+              Label("Duplicates", systemImage: "rectangle.on.rectangle")
                 .foregroundColor(.blue)
               Spacer()
               Text("0")
@@ -127,9 +127,7 @@ struct AlbumsView: View {
           
           NavigationLink(destination: Text("Hidden")) {
             HStack {
-              Image(systemName: "eye.slash")
-                .foregroundColor(.blue)
-              Text("Hidden")
+              Label("Hidden", systemImage: "eye.slash")
                 .foregroundColor(.blue)
               Spacer()
               Image(systemName: "lock.fill")
@@ -139,9 +137,7 @@ struct AlbumsView: View {
           
           NavigationLink(destination: Text("Recently Deleted")) {
             HStack {
-              Image(systemName: "trash.fill")
-                .foregroundColor(.blue)
-              Text("Recently Deleted")
+              Label("Recently Deleted", systemImage: "trash.fill")
                 .foregroundColor(.blue)
               Spacer()
               Image(systemName: "lock.fill")

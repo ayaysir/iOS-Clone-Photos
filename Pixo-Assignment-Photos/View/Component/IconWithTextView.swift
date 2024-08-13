@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IconWithText: View {
+struct IconWithTextView: View {
   let image: Image
   let text: String
   
@@ -18,5 +18,5 @@ struct IconWithText: View {
 }
 
 #Preview {
-  IconWithText(image: .init(systemName: "magnifyingglass"), text: "검색")
+  IconWithTextView(image: .init(systemName: "magnifyingglass"), text: "검색")
 }

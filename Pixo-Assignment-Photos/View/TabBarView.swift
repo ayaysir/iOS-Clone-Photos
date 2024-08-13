@@ -14,19 +14,19 @@ struct TabBarView: View {
     TabView {
       PhotosListView(viewModel: photosListViewModel)
         .tabItem {
-          IconWithText(image: .init(systemName: "photo.fill.on.rectangle.fill"), text: "보관함")
+          IconWithTextView(image: .init(systemName: "photo.fill.on.rectangle.fill"), text: "보관함")
         }
       ForYouView()
         .tabItem {
-          IconWithText(image: .init(systemName: "heart.text.square"), text: "For You")
+          IconWithTextView(image: .init(systemName: "heart.text.square"), text: "For You")
         }
       AlbumsView()
         .tabItem {
-          IconWithText(image: .init(systemName: "square.stack.fill"), text: "앨범")
+          IconWithTextView(image: .init(systemName: "square.stack.fill"), text: "앨범")
         }
       SearchView()
         .tabItem {
-          IconWithText(image: .init(systemName: "magnifyingglass"), text: "검색")
+          IconWithTextView(image: .init(systemName: "magnifyingglass"), text: "검색")
         }
     }
   }
