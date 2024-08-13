@@ -59,9 +59,12 @@ struct PhotosListView: View {
     ScrollViewReader { scrollProxy in
       ScrollView {
         LazyVGrid(columns: columns, spacing: MARGIN) {
-          ForEach(viewModel.assets) { asset in
+          ForEach(viewModel.assets.indices, id: \.self) { index in
+            let asset = viewModel.assets[index]
+            
             NavigationLink {
-              DetailView(viewModel: .init(asset: asset))
+              DetailView(viewModel: .init(currentIndex: index, asset: asset))
+                .environmentObject(viewModel)
             } label: {
               ZStack {
                 Image(uiImage: asset.image ?? .emptyAlbum)

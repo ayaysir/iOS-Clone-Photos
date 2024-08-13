@@ -11,6 +11,13 @@ struct DetailView: View {
   @Environment(\.dismiss) var dismiss
   @StateObject var viewModel: DetailViewModel
   @StateObject var detailReprViewModel: PhotoDetailRepresentedViewModel = .init()
+  @EnvironmentObject var photosListViewModel: PhotosListViewModel
+  
+  @State private var translation: CGSize = .zero
+  
+  var currentImage: UIImage {
+    (viewModel.highResImage ?? viewModel.asset.image) ?? .emptyAlbum
+  }
   
   var body: some View {
     ZStack {
@@ -22,10 +29,39 @@ struct DetailView: View {
       
       VStack {
         PhotoDetailRepresentedView(viewModel: detailReprViewModel) {
-          Image(uiImage: (viewModel.highResImage ?? viewModel.asset.image) ?? .emptyAlbum)
+          Image(uiImage: currentImage)
             .resizable()
             .scaledToFit()
         }
+        .offset(x: detailReprViewModel.currentScale == 1 ? translation.width : 0)
+        .gesture(
+          DragGesture()
+            .onChanged { value in
+              
+              translation = value.translation
+            }
+            .onEnded { value in
+              let threshold: CGFloat = 100
+              
+              if value.translation.width > threshold {
+                // Right swipe
+                DispatchQueue.main.async {
+                  if viewModel.currentIndex > 0 {
+                    viewModel.currentIndex -= 1
+                  }
+                }
+              } else if value.translation.width < -threshold {
+                // Left swipe
+                DispatchQueue.main.async {
+                  if viewModel.currentIndex < photosListViewModel.assets.count - 1 {
+                    viewModel.currentIndex += 1
+                  }
+                }
+              }
+              
+              translation = .zero
+            }
+        )
       }
     }
     .navigationBarTitleDisplayMode(.inline)
@@ -59,10 +95,27 @@ struct DetailView: View {
         TabBarModifier.showTabBar()
       }
     }
+    .onChange(of: viewModel.currentIndex) { newValue in
+      guard newValue >= 0, newValue < photosListViewModel.assets.count else {
+        return
+      }
+      
+      let otherImageData = photosListViewModel.assets[newValue]
+      viewModel.asset = otherImageData
+      
+      translation = .zero
+      
+      Task {
+        let image = await viewModel.loadHighResImage()
+        DispatchQueue.main.async {
+          viewModel.highResImage = image
+        }
+      }
+    }
     .task {
-      if viewModel.highResImage == nil,
-         let phAsset = viewModel.asset.phAsset {
-        viewModel.highResImage = await PhotosService.shared.loadHighResImage(of: phAsset)
+      let image = await viewModel.loadHighResImage()
+      DispatchQueue.main.async {
+        viewModel.highResImage = image
       }
     }
   }
@@ -110,10 +163,12 @@ struct DetailView: View {
   NavigationView {
     DetailView(
       viewModel: .init(
+        currentIndex: 5,
         asset: .init(id: "Test1",
                      name: "풍경",
                      image: .sample1,
                      creationDate: .now,
                      phAsset: nil)))
+    .environmentObject(PhotosListViewModel(listMode: .preview))
   }
 }

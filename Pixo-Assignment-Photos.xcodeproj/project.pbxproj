@@ -37,6 +37,7 @@
 		4450F6102C6AFE570017CC2E /* GridItemUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450F60F2C6AFE570017CC2E /* GridItemUtil.swift */; };
 		4450F6152C6B2CDE0017CC2E /* PeoplePetsThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450F6142C6B2CDE0017CC2E /* PeoplePetsThumbnailView.swift */; };
 		4450F6172C6B2FFF0017CC2E /* TitleWithCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450F6162C6B2FFF0017CC2E /* TitleWithCountView.swift */; };
+		44561FC52C6B4EE6008C4B96 /* PhotoDetailRepresentedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44561FC42C6B4EE6008C4B96 /* PhotoDetailRepresentedViewModel.swift */; };
 		44C33EEC2C69E13A00E30E11 /* NotFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C33EEB2C69E13A00E30E11 /* NotFoundView.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		4450F60F2C6AFE570017CC2E /* GridItemUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridItemUtil.swift; sourceTree = "<group>"; };
 		4450F6142C6B2CDE0017CC2E /* PeoplePetsThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeoplePetsThumbnailView.swift; sourceTree = "<group>"; };
 		4450F6162C6B2FFF0017CC2E /* TitleWithCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithCountView.swift; sourceTree = "<group>"; };
+		44561FC42C6B4EE6008C4B96 /* PhotoDetailRepresentedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailRepresentedViewModel.swift; sourceTree = "<group>"; };
 		44C33EEB2C69E13A00E30E11 /* NotFoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,6 +177,7 @@
 				443472022C68AF730052BD53 /* DetailViewModel.swift */,
 				4450F6082C6AE48C0017CC2E /* AlbumsViewModel.swift */,
 				4450F60A2C6AE7D00017CC2E /* AddToAlbumsViewModel.swift */,
+				44561FC42C6B4EE6008C4B96 /* PhotoDetailRepresentedViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				443471FB2C67B1280052BD53 /* PhotoDetailRepresentedView.swift in Sources */,
 				443472072C68BAB20052BD53 /* SearchView.swift in Sources */,
 				4450F6152C6B2CDE0017CC2E /* PeoplePetsThumbnailView.swift in Sources */,
+				44561FC52C6B4EE6008C4B96 /* PhotoDetailRepresentedViewModel.swift in Sources */,
 				4434720B2C68CA060052BD53 /* AlbumData.swift in Sources */,
 				4450F6072C6A1E240017CC2E /* AddToAlbumView.swift in Sources */,
 				443472012C68AB790052BD53 /* PhotosService.swift in Sources */,

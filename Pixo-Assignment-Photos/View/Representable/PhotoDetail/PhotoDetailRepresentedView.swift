@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-final class PhotoDetailRepresentedViewModel: ObservableObject {
-  @Published var isFullscreen = false
-}
-
 struct PhotoDetailRepresentedView<Content: View>: UIViewRepresentable {
   @ObservedObject var viewModel: PhotoDetailRepresentedViewModel
   private var content: Content
@@ -39,7 +35,7 @@ struct PhotoDetailRepresentedView<Content: View>: UIViewRepresentable {
   }
   
   func makeCoordinator() -> Coordinator {
-    return Coordinator(hostingController: UIHostingController(rootView: self.content))
+    return Coordinator(hostingController: UIHostingController(rootView: self.content), viewModel: viewModel)
   }
   
   func updateUIView(_ uiView: UIScrollView, context: Context) {
@@ -54,13 +50,19 @@ struct PhotoDetailRepresentedView<Content: View>: UIViewRepresentable {
   
   class Coordinator: NSObject, UIScrollViewDelegate {
     var hostingController: UIHostingController<Content>
+    var viewModel: PhotoDetailRepresentedViewModel
     
-    init(hostingController: UIHostingController<Content>) {
+    init(hostingController: UIHostingController<Content>, viewModel: PhotoDetailRepresentedViewModel) {
       self.hostingController = hostingController
+      self.viewModel = viewModel
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
       return hostingController.view
+    }
+    
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+      viewModel.currentScale = scale
     }
   }
 }

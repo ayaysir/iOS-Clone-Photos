@@ -142,6 +142,7 @@ struct PhotosService {
     return fetchedAlbums
   }
   
+  /// 컬렉션 ID로 해당 컬렉션을 불러옵니다.
   func loadCollection(of collectionId: String) -> PHAssetCollection? {
     let fetchOptions = PHFetchOptions()
     // collection.localIdentifier가 특정 값인 경우만 가져옴

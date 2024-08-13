@@ -8,13 +8,21 @@
 import UIKit
 
 final class DetailViewModel: ObservableObject {
-  let asset: LibraryImage
+  @Published var currentIndex: Int
+  @Published var asset: LibraryImage
   @Published var highResImage: UIImage?
-  @Published var currentZoom = 0.0
-  @Published var totalZoom = 1.0
   
-  init(asset: LibraryImage, highResImage: UIImage? = nil) {
+  init(currentIndex: Int, asset: LibraryImage, highResImage: UIImage? = nil) {
+    self.currentIndex = currentIndex
     self.asset = asset
     self.highResImage = highResImage
+  }
+  
+  func loadHighResImage() async -> UIImage? {
+    guard let phAsset = asset.phAsset else {
+      return nil
+    }
+    
+    return await PhotosService.shared.loadHighResImage(of: phAsset)
   }
 }
