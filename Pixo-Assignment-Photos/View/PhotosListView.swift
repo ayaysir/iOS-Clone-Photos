@@ -13,7 +13,9 @@ struct PhotosListView: View {
   let MARGIN: CGFloat = 3
   @State private var columnCount = 3.0
   @State private var isFirstrun = true
+  
   @State private var showDeleteActionSheet = false
+  @State private var showAddToAlbumSheet = false
   
   var columns: [GridItem] {
     (1...Int(columnCount)).map { _ in
@@ -36,7 +38,8 @@ struct PhotosListView: View {
       }
       
       Button {
-        
+        showAddToAlbumSheet.toggle()
+        viewModel.selectedAsset = selectedAsset
       } label: {
         Label("앨범에 추가", systemImage: "rectangle.stack.badge.plus")
       }
@@ -129,6 +132,15 @@ struct PhotosListView: View {
         }
       } message: {
         Text("이 사진이 기기에서 삭제됩니다. 해당 사진은 '최근 삭제된 항목'에 30일간 보관됩니다.")
+      }
+      .sheet(isPresented: $showAddToAlbumSheet) {
+        Group {
+          if let selectedAsset = viewModel.selectedAsset {
+            AddToAlbumView(viewModel: .init(selectedPhoto: selectedAsset))
+          } else {
+            Text("No asset selected")
+          }
+        }
       }
     }
   }

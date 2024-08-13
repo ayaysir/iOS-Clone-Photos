@@ -8,18 +8,10 @@
 import SwiftUI
 
 struct AlbumsView: View {
-  @State var albums: [AlbumData] = []
+  @StateObject var viewModel: AlbumsViewModel = .init()
   
-  let albumGridHeight: CGFloat = 150
-  
-  private func albumGridColumns(_ rowCount: Int) -> [GridItem] {
-    var result: [GridItem] = []
-    for _ in 0..<rowCount {
-      result.append(.init(.flexible()))
-    }
-    
-    return result
-  }
+  let albumGridHeight: CGFloat = 202.5
+  let albumGridSpacing: CGFloat = 10
   
   private func subtitleHeader(_ title: String) -> some View {
     Text(title)
@@ -29,34 +21,17 @@ struct AlbumsView: View {
   }
   
   private func albumCell(data: AlbumData) -> some View {
-    VStack {
-      ZStack {
-        NavigationLink {
-          if data.count == 0 {
-            NotFoundView(
-              title: "No Photos or Videos",
-              comment: "You can take photos and videos using the camera, or sync photos and videos onto your iPhone using Finder."
-            )
-          } else {
-            PhotosListView(viewModel: .init(listMode: .album(albumData: data)))
-          }
-        } label: {
-          Image(uiImage: data.thumbnail ?? .emptyAlbum)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: albumGridHeight, height: albumGridHeight)
-            .foregroundStyle(.gray)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-        }
+    NavigationLink {
+      if data.count == 0 {
+        NotFoundView(
+          title: "No Photos or Videos",
+          comment: "You can take photos and videos using the camera, or sync photos and videos onto your iPhone using Finder."
+        )
+      } else {
+        PhotosListView(viewModel: .init(listMode: .album(albumData: data)))
       }
-      VStack(alignment: .leading, spacing: -2.4) {
-        Text(data.title)
-          .font(.subheadline)
-        Text("\(data.count)")
-          .font(.caption)
-          .foregroundStyle(.gray)
-      }
-      .frame(maxWidth: .infinity, alignment: .leading) // 왼쪽 정렬 및 상위 뷰 크기에 맞춤
+    } label: {
+      AlbumCellView(data: data)
     }
   }
   
@@ -65,11 +40,12 @@ struct AlbumsView: View {
       List {
         Section {
           ScrollView(.horizontal) {
-            LazyHGrid(rows: albumGridColumns(2), spacing: 10) {
-              ForEach(albums) { album in
+            LazyHGrid(rows: gridFlexibleColumns(2), spacing: albumGridSpacing) {
+              ForEach(viewModel.albums) { album in
                 albumCell(data: album)
               }
             }
+            .frame(height: albumGridHeight * 2)
           }
         } header: {
           HStack {
@@ -85,11 +61,12 @@ struct AlbumsView: View {
         
         Section {
           ScrollView(.horizontal) {
-            LazyHGrid(rows: albumGridColumns(1), spacing: 10) {
+            LazyHGrid(rows: gridFlexibleColumns(1), spacing: albumGridSpacing) {
               ForEach(0..<30) { index in
                 albumCell(data: .init(id: "\(index)", thumbnail: .sample2, title: "Recent", count: index))
               }
             }
+            .frame(height: albumGridHeight)
           }
         } header: {
           subtitleHeader("People, Pets & Places")
@@ -178,9 +155,6 @@ struct AlbumsView: View {
       .listStyle(.inset)
       .navigationBarTitleDisplayMode(.large)
       .navigationTitle("Albums")
-      .task {
-        albums = await PhotosService.shared.loadAlbums()
-      }
     }
   }
 }

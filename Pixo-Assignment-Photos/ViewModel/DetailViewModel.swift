@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewModel: ObservableObject {
+final class DetailViewModel: ObservableObject {
   let asset: LibraryImage
   @Published var highResImage: UIImage?
   @Published var currentZoom = 0.0

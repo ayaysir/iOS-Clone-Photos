@@ -30,6 +30,11 @@
 		4434720D2C698B590052BD53 /* UIApplication+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4434720C2C698B590052BD53 /* UIApplication+.swift */; };
 		4434720F2C698C590052BD53 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4434720E2C698C590052BD53 /* UIView+.swift */; };
 		443472112C698DD10052BD53 /* TabBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443472102C698DD10052BD53 /* TabBarModifier.swift */; };
+		4450F6072C6A1E240017CC2E /* AddToAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450F6062C6A1E240017CC2E /* AddToAlbumView.swift */; };
+		4450F6092C6AE48C0017CC2E /* AlbumsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450F6082C6AE48C0017CC2E /* AlbumsViewModel.swift */; };
+		4450F60B2C6AE7D00017CC2E /* AddToAlbumsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450F60A2C6AE7D00017CC2E /* AddToAlbumsViewModel.swift */; };
+		4450F60D2C6AF5860017CC2E /* AlbumCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450F60C2C6AF5860017CC2E /* AlbumCellView.swift */; };
+		4450F6102C6AFE570017CC2E /* GridItemUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450F60F2C6AFE570017CC2E /* GridItemUtil.swift */; };
 		44C33EEC2C69E13A00E30E11 /* NotFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C33EEB2C69E13A00E30E11 /* NotFoundView.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +63,11 @@
 		4434720C2C698B590052BD53 /* UIApplication+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+.swift"; sourceTree = "<group>"; };
 		4434720E2C698C590052BD53 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		443472102C698DD10052BD53 /* TabBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModifier.swift; sourceTree = "<group>"; };
+		4450F6062C6A1E240017CC2E /* AddToAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToAlbumView.swift; sourceTree = "<group>"; };
+		4450F6082C6AE48C0017CC2E /* AlbumsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewModel.swift; sourceTree = "<group>"; };
+		4450F60A2C6AE7D00017CC2E /* AddToAlbumsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToAlbumsViewModel.swift; sourceTree = "<group>"; };
+		4450F60C2C6AF5860017CC2E /* AlbumCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCellView.swift; sourceTree = "<group>"; };
+		4450F60F2C6AFE570017CC2E /* GridItemUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridItemUtil.swift; sourceTree = "<group>"; };
 		44C33EEB2C69E13A00E30E11 /* NotFoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +103,7 @@
 		442425AA2C62584B00A457C3 /* Pixo-Assignment-Photos */ = {
 			isa = PBXGroup;
 			children = (
+				4450F60E2C6AFE330017CC2E /* Util */,
 				443471FF2C68AB5C0052BD53 /* Service */,
 				443471FC2C68AB140052BD53 /* ValueObject */,
 				442425E62C6675EB00A457C3 /* Extension */,
@@ -136,6 +147,7 @@
 				443472062C68BAB20052BD53 /* SearchView.swift */,
 				443472082C68BE770052BD53 /* AlbumsView.swift */,
 				442425BF2C625A4600A457C3 /* TabBarView.swift */,
+				4450F6062C6A1E240017CC2E /* AddToAlbumView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -145,6 +157,7 @@
 			children = (
 				442425C32C62617700A457C3 /* IconWithText.swift */,
 				44C33EEB2C69E13A00E30E11 /* NotFoundView.swift */,
+				4450F60C2C6AF5860017CC2E /* AlbumCellView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -154,6 +167,8 @@
 			children = (
 				442425C82C6395BA00A457C3 /* PhotosListViewModel.swift */,
 				443472022C68AF730052BD53 /* DetailViewModel.swift */,
+				4450F6082C6AE48C0017CC2E /* AlbumsViewModel.swift */,
+				4450F60A2C6AE7D00017CC2E /* AddToAlbumsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -207,6 +222,14 @@
 				443472002C68AB790052BD53 /* PhotosService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		4450F60E2C6AFE330017CC2E /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				4450F60F2C6AFE570017CC2E /* GridItemUtil.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,8 +308,12 @@
 				442425C92C6395BA00A457C3 /* PhotosListViewModel.swift in Sources */,
 				443472112C698DD10052BD53 /* TabBarModifier.swift in Sources */,
 				4434720F2C698C590052BD53 /* UIView+.swift in Sources */,
+				4450F6102C6AFE570017CC2E /* GridItemUtil.swift in Sources */,
+				4450F60B2C6AE7D00017CC2E /* AddToAlbumsViewModel.swift in Sources */,
 				4434720D2C698B590052BD53 /* UIApplication+.swift in Sources */,
 				442425AC2C62584B00A457C3 /* Pixo_Assignment_PhotosApp.swift in Sources */,
+				4450F6092C6AE48C0017CC2E /* AlbumsViewModel.swift in Sources */,
+				4450F60D2C6AF5860017CC2E /* AlbumCellView.swift in Sources */,
 				443471FE2C68AB240052BD53 /* LibraryImage.swift in Sources */,
 				442425C62C63905D00A457C3 /* PhotosListView.swift in Sources */,
 				442425C42C62617700A457C3 /* IconWithText.swift in Sources */,
@@ -296,6 +323,7 @@
 				443471FB2C67B1280052BD53 /* PhotoDetailRepresentedView.swift in Sources */,
 				443472072C68BAB20052BD53 /* SearchView.swift in Sources */,
 				4434720B2C68CA060052BD53 /* AlbumData.swift in Sources */,
+				4450F6072C6A1E240017CC2E /* AddToAlbumView.swift in Sources */,
 				443472012C68AB790052BD53 /* PhotosService.swift in Sources */,
 				443472092C68BE770052BD53 /* AlbumsView.swift in Sources */,
 				44C33EEC2C69E13A00E30E11 /* NotFoundView.swift in Sources */,

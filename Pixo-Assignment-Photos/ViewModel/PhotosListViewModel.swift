@@ -14,9 +14,10 @@ enum PhotosListMode {
   case album(albumData: AlbumData)
 }
 
-class PhotosListViewModel: ObservableObject {
+final class PhotosListViewModel: ObservableObject {
   let manager = PHCachingImageManager()
   let listMode: PhotosListMode
+  
   @Published var assetsCount = 0
   @Published var assets: [LibraryImage] = .init()
   @Published var selectedAsset: LibraryImage?
