@@ -19,4 +19,13 @@ final class AddToAlbumsViewModel: ObservableObject {
       self.albums = await PhotosService.shared.loadAlbums()
     }
   }
+  
+  func addToAlbum(asset: LibraryImage, to album: AlbumData) async -> Bool {
+    guard let phAsset = asset.phAsset,
+      let collection = PhotosService.shared.loadCollection(of: album.id) else {
+      return false
+    }
+    
+    return await PhotosService.shared.addPhotoToAlbum(phAsset: phAsset, album: collection)
+  }
 }
