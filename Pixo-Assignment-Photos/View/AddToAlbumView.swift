@@ -14,8 +14,10 @@ struct AddToAlbumView: View {
   
   @State private var showNewAlbumInputAlert = false
   @State private var showResultAlert = false
+  @State private var showCreateAlbumAlert = false
   
   @State private var inputResult = false
+  @State private var newAlbumTitle = ""
   
   let albumGridSpacing: CGFloat = 15
   
@@ -85,12 +87,19 @@ struct AddToAlbumView: View {
         }
       }
       .alert("새로운 앨범", isPresented: $showNewAlbumInputAlert) {
-        TextField("제목", text: .constant(""))
+        TextField("제목", text: $newAlbumTitle)
         Button("취소", role: .cancel) {
-          
+          newAlbumTitle = ""
         }
         Button("저장") {
-          
+          Task {
+            if await viewModel.createNewAlbum(title: newAlbumTitle) {
+            } else {
+              showCreateAlbumAlert = true
+            }
+            
+            newAlbumTitle = ""
+          }
         }
       } message: {
         Text("이 앨범의 이름을 입력하십시오.")
@@ -101,6 +110,11 @@ struct AddToAlbumView: View {
         }
       } message: {
         Text(inputResult ? "앨범에 사진이 추가되었습니다." : "앨범에 사진이 추가되지 않았습니다.")
+      }
+      .alert("앨범 생성 실패", isPresented: $showCreateAlbumAlert) {
+        Button("확인") {}
+      } message: {
+        Text("앨범에 생성되지 않았습니다.")
       }
     }
   }

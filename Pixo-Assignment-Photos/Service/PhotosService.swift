@@ -152,6 +152,7 @@ struct PhotosService {
     return collections.firstObject
   }
   
+  /// 앨범 id를 이용해 앨범 내의 사진들을 불러옵니다.
   func loadAssets(of collectionId: String) -> PHFetchResult<PHAsset>? {
     guard let collection = loadCollection(of: collectionId) else {
       return nil
@@ -194,6 +195,7 @@ struct PhotosService {
     }
   }
   
+  /// 사진을 앨범에 추가합니다.
   func addPhotoToAlbum(phAsset: PHAsset, album: PHAssetCollection) async -> Bool {
     return await withCheckedContinuation { continuation in
       PHPhotoLibrary.shared().performChanges {
@@ -204,6 +206,17 @@ struct PhotosService {
           // 앨범에 해당 사진을 추가합니다.
           albumChangeRequest.addAssets([phAsset] as NSArray)
         }
+      } completionHandler: { isSuccess, error in
+        continuation.resume(returning: isSuccess)
+      }
+    }
+  }
+  
+  /// 새로운 앨범을 생성합니다.
+  func createAlbum(title: String) async -> Bool {
+    return await withCheckedContinuation { continuation in
+      PHPhotoLibrary.shared().performChanges {
+        PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: title)
       } completionHandler: { isSuccess, error in
         continuation.resume(returning: isSuccess)
       }

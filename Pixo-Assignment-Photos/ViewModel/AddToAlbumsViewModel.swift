@@ -16,8 +16,12 @@ final class AddToAlbumsViewModel: ObservableObject {
     self.selectedPhoto = selectedPhoto
     
     Task {
-      self.albums = await PhotosService.shared.loadAlbums()
+      await loadAlbums()
     }
+  }
+  
+  func loadAlbums() async {
+    self.albums = await PhotosService.shared.loadAlbums()
   }
   
   func addToAlbum(asset: LibraryImage, to album: AlbumData) async -> Bool {
@@ -27,5 +31,14 @@ final class AddToAlbumsViewModel: ObservableObject {
     }
     
     return await PhotosService.shared.addPhotoToAlbum(phAsset: phAsset, album: collection)
+  }
+  
+  func createNewAlbum(title: String) async -> Bool {
+    let result = await PhotosService.shared.createAlbum(title: title)
+    if result {
+      await loadAlbums()
+    }
+    
+    return result
   }
 }
