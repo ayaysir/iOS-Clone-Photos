@@ -42,7 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		442425A82C62584B00A457C3 /* Pixo-Assignment-Photos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pixo-Assignment-Photos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		442425A82C62584B00A457C3 /* iOS-Clone-Photos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Clone-Photos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		442425AB2C62584B00A457C3 /* Pixo_Assignment_PhotosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixo_Assignment_PhotosApp.swift; sourceTree = "<group>"; };
 		442425AD2C62584B00A457C3 /* CoreDataExampleContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExampleContentView.swift; sourceTree = "<group>"; };
 		442425AF2C62584C00A457C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		442425A92C62584B00A457C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				442425A82C62584B00A457C3 /* Pixo-Assignment-Photos.app */,
+				442425A82C62584B00A457C3 /* iOS-Clone-Photos.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -244,9 +244,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		442425A72C62584B00A457C3 /* Pixo-Assignment-Photos */ = {
+		442425A72C62584B00A457C3 /* iOS-Clone-Photos */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 442425BB2C62584C00A457C3 /* Build configuration list for PBXNativeTarget "Pixo-Assignment-Photos" */;
+			buildConfigurationList = 442425BB2C62584C00A457C3 /* Build configuration list for PBXNativeTarget "iOS-Clone-Photos" */;
 			buildPhases = (
 				442425A42C62584B00A457C3 /* Sources */,
 				442425A52C62584B00A457C3 /* Frameworks */,
@@ -256,9 +256,9 @@
 			);
 			dependencies = (
 			);
-			name = "Pixo-Assignment-Photos";
+			name = "iOS-Clone-Photos";
 			productName = "Pixo-Assignment-Photos";
-			productReference = 442425A82C62584B00A457C3 /* Pixo-Assignment-Photos.app */;
+			productReference = 442425A82C62584B00A457C3 /* iOS-Clone-Photos.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -276,7 +276,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 442425A32C62584B00A457C3 /* Build configuration list for PBXProject "Pixo-Assignment-Photos" */;
+			buildConfigurationList = 442425A32C62584B00A457C3 /* Build configuration list for PBXProject "iOS-Clone-Photos" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -289,7 +289,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				442425A72C62584B00A457C3 /* Pixo-Assignment-Photos */,
+				442425A72C62584B00A457C3 /* iOS-Clone-Photos */,
 			);
 		};
 /* End PBXProject section */
@@ -533,7 +533,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		442425A32C62584B00A457C3 /* Build configuration list for PBXProject "Pixo-Assignment-Photos" */ = {
+		442425A32C62584B00A457C3 /* Build configuration list for PBXProject "iOS-Clone-Photos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				442425B92C62584C00A457C3 /* Debug */,
@@ -542,7 +542,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		442425BB2C62584C00A457C3 /* Build configuration list for PBXNativeTarget "Pixo-Assignment-Photos" */ = {
+		442425BB2C62584C00A457C3 /* Build configuration list for PBXNativeTarget "iOS-Clone-Photos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				442425BC2C62584C00A457C3 /* Debug */,

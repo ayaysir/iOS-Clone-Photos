@@ -152,8 +152,6 @@ struct AlbumsView: View {
       .navigationBarTitleDisplayMode(.large)
       .navigationTitle("Albums")
       .onReceive(globalAlbumUpdatedPublisher) { _ in
-        print("glbos")
-        viewModel.albums = []
         Task {
           await viewModel.loadAlbums()
         }
