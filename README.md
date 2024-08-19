@@ -1,9 +1,4 @@
-# Pixo iOS 엔지니어 과제테스트 - 윤범태
-
-## 접근
-- iOS 사진 앱(Photos)의 클론 앱을 구현하였습니다.
-  - 주어진 시간 범위 내에서 구현할 수 있는 기능을 우선적으로 시도했습니다. 
-- 디자인 및 레이아웃도 최대한 비슷하게 배치했습니다.
+# iOS 사진앱 클론 (일부분)
 
 ## 사용 기술
 - SwiftUI
@@ -35,7 +30,6 @@
   - 기타 구현하지 못한 부분도 레이아웃은 되어 있습니다.
  
 ## 스크린샷
-
 
 ![Simulator Screenshot - iPhone 15 Pro - 2024-08-13 at 19 02 38](https://github.com/user-attachments/assets/329aa7ad-da20-4d74-b917-102bf2358fd5)
 ![Simulator Screenshot - iPhone 15 Pro - 2024-08-13 at 19 02 45](https://github.com/user-attachments/assets/edc8d173-96a7-4a97-b06a-8b42423882e7)
